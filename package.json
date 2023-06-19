@@ -5,10 +5,12 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "dev2":"npx vite --port=4000",
     "build": "vite build",
     "preview": "vite preview"
   },
   "dependencies": {
+    "element-plus": "^2.3.6",
     "vue": "^3.2.47",
     "vue-router": "^4.2.2"
   },
