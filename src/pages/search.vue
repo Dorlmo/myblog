@@ -1,11 +1,8 @@
 <script setup>
-
 </script>
 
 <template>
-  <div>
-    HelloWorld!
-  </div>
+  <div></div>
 </template>
 
 <style scoped>

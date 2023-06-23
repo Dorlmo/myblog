@@ -1,1 +1,1 @@
-This is just a blog
+Just a noob learning and coding 
