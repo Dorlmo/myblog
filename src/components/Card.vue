@@ -1,9 +1,10 @@
 <script setup>
 const getData = defineProps(
     {
-        data:{
+        blogInfo:{
+            date:Date,
             title:String,
-            date:Date
+            dir:String
         }
     }
 )
@@ -11,8 +12,8 @@ const getData = defineProps(
 
 <template>
     <div class="container">
-    <div class="left">{{ data.title }}</div>
-    <div class="right">{{ data.date }}</div>
+    <div class="left">{{ blogInfo.title }}</div>
+    <div class="right">{{ blogInfo.date }}</div>
   </div>
 </template>
 
