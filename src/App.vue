@@ -1,30 +1,20 @@
 <template>
   <div class="overview">
     <el-container>
-      <el-header></el-header>
+      <el-header>
+        <el-menu
+          :default-active="Home"
+          router
+          mode="horizontal"
+          :ellipsis="false"
+        >
+          <div class="flex-grow"></div>
+          <el-menu-item index="home">主页</el-menu-item>
+          <el-menu-item index="index">文档</el-menu-item>
+          <el-menu-item index="about">关于</el-menu-item>
+        </el-menu>
+      </el-header>
       <el-container>
-        <el-aside>
-          <!--  navigation menu  -->
-          <div>
-            <el-menu default-active="/home" router :default-active="$route.path">
-              <el-menu-item index="/home">
-                <span>主页</span>
-              </el-menu-item>
-              <el-menu-item index="/index">
-                <span>目录</span>
-              </el-menu-item>
-              <el-menu-item index="/list">
-                <span>列表</span>
-              </el-menu-item>
-              <el-menu-item index="/search">
-                <span>搜索</span>
-              </el-menu-item>
-              <el-menu-item index="/about">
-                <span>关于</span>
-              </el-menu-item>
-            </el-menu>
-          </div>
-        </el-aside>
         <el-main>
           <RouterView></RouterView>
         </el-main>
@@ -45,11 +35,8 @@ import { ElContainer, ElMain, ElHeader, ElAside, ElMenu, ElMenuItem } from 'elem
   height: 100%;
 }
 
-.el-header {
-  height: 50px;
+.flex-grow{
+  flex-grow: 1;
 }
 
-.el-aside {
-  width: 150px;
-}
 </style>

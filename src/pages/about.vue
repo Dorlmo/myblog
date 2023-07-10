@@ -2,7 +2,9 @@
 </script>
 
 <template>
-  <div>Hi I am Cefres</div>
+  <div>
+      建设中。。。
+  </div>
 </template>
 
 <style scoped>

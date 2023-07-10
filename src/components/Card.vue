@@ -13,7 +13,6 @@ const getData = defineProps(
 <template>
     <div class="container">
     <div class="left">{{ blogInfo.title }}</div>
-    <div class="right">{{ blogInfo.date }}</div>
   </div>
 </template>
 
@@ -31,9 +30,5 @@ const getData = defineProps(
 }
 .left {
     text-align: left;
-}
-
-.right {
-    text-align: right;
 }
 </style>
