@@ -16,7 +16,7 @@ const CONTENT_FOLDER_PATH = join(__dirname, '../../public/content');
  * @member list:string[]
  */
 export interface BlogTable {
-  name: string,
+  tableName: string,
   list: string[],
 }
 
@@ -70,46 +70,6 @@ const batchConvertToHTML = async (folderPath: string): Promise<void> => {
 }
 
 /**
- * @description 创建目录
- */
-const createTable = async () => {
-  try {
-    let tables: BlogTable[] = [];
-    const folders = await fsPromises.readdir(BLOG_FOLDER_PATH);
-    for (const folder of folders) {
-      const folderPath = join(BLOG_FOLDER_PATH, folder);
-      const folderStat = await fsPromises.stat(folderPath);
-      
-      //遍历这个文件夹，填充blogList博客名字列表
-      let blogList: string[] = [];
-      if (folderStat.isDirectory()) {
-        const files = await fsPromises.readdir(folderPath);
-        for (const file of files) {
-          if (file.endsWith('.md')) {
-            blogList.push(file);
-          }
-        }
-      } else continue;
-      blogList.sort(sortByName);
-
-      //name为文件夹名字，list为博客名字（带后缀）列表
-      const newTable: BlogTable = {
-        name: folder,
-        list: blogList
-      }
-      tables.push(newTable);
-    }
-    tables.sort((a, b) => {
-      return sortByName(a.name, b.name);
-    })
-    await fsPromises.writeFile(BLOG_TABLE_PATH, JSON.stringify(tables));
-    console.log("Table created successfully")
-  } catch (error) {
-    console.log("Table created failed")
-  }
-}
-
-/**
  * @description 创建内容
  */
 const createContent = async (): Promise<void> => {
@@ -123,7 +83,7 @@ const createContent = async (): Promise<void> => {
       const filePath = join(CONTENT_FOLDER_PATH, file);
       const stat = await fsPromises.stat(filePath);
       if (stat.isDirectory()) {
-        batchConvertToHTML(filePath);
+        await batchConvertToHTML(filePath);
       }
     }
     console.log('Content created successfully')
@@ -132,9 +92,51 @@ const createContent = async (): Promise<void> => {
   }
 }
 
+
+/**
+ * @description 创建目录
+ */
+const createTable = async () => {
+  try {
+    let tables: BlogTable[] = [];
+    const folders = await fsPromises.readdir(CONTENT_FOLDER_PATH);
+    for (const folder of folders) {
+      const folderPath = join(CONTENT_FOLDER_PATH, folder);
+      const folderStat = await fsPromises.stat(folderPath);
+
+      //遍历这个文件夹，填充blogList博客名字列表
+      let blogList: string[] = [];
+      if (folderStat.isDirectory()) {
+        const files = await fsPromises.readdir(folderPath);
+        for (const file of files) {
+          if (file.endsWith('.html')) {
+            blogList.push(file);
+          }
+        }
+      } else continue;
+      blogList.sort(sortByName);
+
+      //name为文件夹名字，list为博客名字（带后缀）列表
+      const newTable: BlogTable = {
+        tableName: folder,
+        list: blogList
+      }
+      tables.push(newTable);
+    }
+    tables.sort((a, b) => {
+      return sortByName(a.tableName, b.tableName);
+    })
+    await fsPromises.writeFile(BLOG_TABLE_PATH, JSON.stringify(tables));
+    console.log("Table created successfully")
+  } catch (error) {
+    console.log("Table created failed")
+  }
+}
+
+
 const createData = async (): Promise<void> => {
-  await createTable();
   await createContent();
+  await createTable();
 }
 
 export default createData

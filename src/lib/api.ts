@@ -1,5 +1,6 @@
 import axios from "axios"
 
+//使用async和await使用这个函数
 export const getStringResource = async (filePath: string): Promise<string> => {
   try {
     const response = await axios.get(filePath);

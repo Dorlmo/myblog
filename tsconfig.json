@@ -16,7 +16,7 @@
       "jsx": "preserve",
       "incremental": true
     },
-    "include": ["src/**/*", "**/*.ts", "**/*.tsx", "**/*.test.ts"],
+    "include": [ "**/*.ts", "**/*.tsx", "**/*.test.ts"],
     "exclude": ["node_modules"],
     "ts-node": { 
       "esm": true 
