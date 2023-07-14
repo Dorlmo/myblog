@@ -3,10 +3,11 @@
  */
 export const processMarkdownPaths = (markdownText: string) => {
     //例:输入 [a](D:\Workspace\content\test\1.md)，输出 [a](/content/test/1.md)
+    markdownText = markdownText.replace(/\\/g, "/");
     const linkRegex = /\[(.*?)\]\((.*)\)/g;
     markdownText = markdownText.replace(linkRegex, (_match, altText, linkPath) => {
-        const processedLinkPath = linkPath.replace(/.*(?=\\content)/, '');
-        return `[${altText}](${processedLinkPath})`.replace(/\\/g, "/");
+        const processedLinkPath = linkPath.replace(/.*(?=\/content)/, '');
+        return `[${altText}](${processedLinkPath})`;
     });
 
     return markdownText;

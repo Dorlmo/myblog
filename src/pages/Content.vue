@@ -1,44 +1,63 @@
 <script setup lang="ts">
-import { ElContainer, ElMain, ElAside, ElMenu, ElMenuItem } from 'element-plus';
+import { ElMenu, ElMenuItem } from 'element-plus';
 import { onMounted, ref, Ref } from 'vue';
-import { useRouter } from 'vue-router';
+import { useRoute, useRouter } from 'vue-router';
 import { BlogTable } from '../script/content'
 import data from '../assets/data/blogTable.json';
-const router = useRouter();
 const tables: Ref<BlogTable[]> = ref();
 
 onMounted(() => {
   tables.value = data;
+  const route = useRoute();
+  const router = useRouter();
+  if(!(route.params.table||route.params.blog)){
+    router.push({name:'content',params:{table:tables.value[0].tableName,blog:tables.value[0].list[0]}});
+  }
 })
 
-function routeGo(tableName: string, blogName: string) {
-  router.push({ name: 'content', params: { table: tableName, blog: blogName } });
+function getRoutePath(tableName: string, blogName: string): string {
+  return "/content/" + tableName + "/" + blogName;
 }
 
 </script>
 
 <template>
   <div class="common-layout">
-    <el-container>
-      <el-aside>
-        <el-menu v-for="table in tables">
-          <div>{{ table.tableName }}</div>
-          <el-menu-item v-for="blog in table.list" :key="blog" @click="()=>routeGo(table.tableName, blog)">
+    <div class="aside_nav">
+      <el-menu router>
+        <div v-for="table in tables">{{ table.tableName }}
+          <el-menu-item v-for="blog in table.list" :key="blog" :index="blog" :route="getRoutePath(table.tableName, blog)">
             <div>{{ blog }}</div>
           </el-menu-item>
           <div style="height: 20px;"></div>
-        </el-menu>
-      </el-aside>
-      <el-main>
+        </div>
+      </el-menu>
+    </div>
+    <div class="main">
+      <div class="content">
         <router-view></router-view>
-        <div style="height: 100px;"></div>
-      </el-main>
-    </el-container>
+      </div>
+    </div>
   </div>
 </template>
 
 <style scoped>
-el-aside {
+.aside_nav {
+  position: fixed;
+  top: 50px;
+  left: 0;
+  bottom: 0;
   width: 200px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  padding: 10px;
+}
+
+.main {
+  padding-left: 200px;
+}
+
+.content {
+  padding: 64px 0 96px 96px;
 }
 </style>

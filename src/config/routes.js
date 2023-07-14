@@ -6,9 +6,10 @@ export default [
     { path: '/about', component: () => import('../pages/About.vue') },
     { path: '/test', component: () => import('../pages/Test.vue') },
     {
-        path: '/content', component: () => import('../pages/Content.vue'),
+        path: '/content', name: 'main', component: () => import('../pages/Content.vue'),
         children: [
             { path: ':table/:blog', name: 'content', component: () => import('../components/BlogContent.vue') },
         ]
-    }
+    },
+    { path: '/:pathMatch(.*)*',component:() => import('../pages/Error.vue')}
 ]

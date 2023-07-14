@@ -7,6 +7,6 @@ export const getStringResource = async (filePath: string): Promise<string> => {
     return response.data as string;
   } catch (error) {
     console.error('Failed to get string resourse:' + filePath, error);
-    return 'failed';
+    return 'ERROR:Get resource failed';
   }
 }

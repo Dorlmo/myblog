@@ -1,12 +1,12 @@
 import { createRouter } from 'vue-router'
-import { createWebHistory } from 'vue-router'
+import { createWebHashHistory } from 'vue-router'
 import { createApp } from 'vue'
 import App from './App.vue'
 import routes from './config/routes.js'
 import 'element-plus/dist/index.css'
 
 const router = createRouter({
-    history: createWebHistory(),
+    history: createWebHashHistory(),
     routes, 
   })
 
