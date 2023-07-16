@@ -5,8 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "npx vite --port=4000",
-    "win-build:content": "ts-node src/script/content.ts",
-    "win-build": "npm run win-build:content & vite build",
+    "build:content": "ts-node src/script/content.ts",
+    "build": "npm run build:content & vite build",
     "preview": "vite preview"
   },
   "dependencies": {

@@ -3,9 +3,8 @@
 
 <template>
     <div>
-        测试
+        页面不存在
     </div>
 </template>
 
-<style scoped>
-</style>
+<style scoped></style>

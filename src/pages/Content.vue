@@ -1,23 +1,42 @@
 <script setup lang="ts">
 import { ElMenu, ElMenuItem } from 'element-plus';
-import { onMounted, ref, Ref } from 'vue';
+import { onMounted, watch, ref, Ref } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import { BlogTable } from '../script/content'
+import { getStringResource } from '../lib/api';
 import data from '../assets/data/blogTable.json';
-const tables: Ref<BlogTable[]> = ref();
 
-onMounted(() => {
-  tables.value = data;
-  const route = useRoute();
-  const router = useRouter();
-  if(!(route.params.table||route.params.blog)){
-    router.push({name:'content',params:{table:tables.value[0].tableName,blog:tables.value[0].list[0]}});
-  }
-})
+const tables: Ref<BlogTable[]> = ref();
+const contentData = ref();
+const route = useRoute();
 
 function getRoutePath(tableName: string, blogName: string): string {
   return "/content/" + tableName + "/" + blogName;
 }
+
+async function fetchData():Promise<void> {
+  contentData.value = await getStringResource("/content/" + route.params.table + "/" + route.params.blog);
+}
+
+onMounted(() => {
+  tables.value = data;
+  const router = useRouter();
+  if (!(route.params.table || route.params.blog)) {
+    router.push({ name: 'content', params: { table: tables.value[0].tableName, blog: tables.value[0].list[0] } });
+  }
+  else{
+    fetchData();
+  }
+})
+
+watch(
+  () => [route.params.table, route.params.blog],
+  async () => {
+    fetchData();
+  }
+);
+
+
 
 </script>
 
@@ -25,7 +44,10 @@ function getRoutePath(tableName: string, blogName: string): string {
   <div class="common-layout">
     <div class="aside_nav">
       <el-menu router>
-        <div v-for="table in tables">{{ table.tableName }}
+        <div v-for="table in tables">
+          <div>
+            {{ table.tableName }}
+          </div>
           <el-menu-item v-for="blog in table.list" :key="blog" :index="blog" :route="getRoutePath(table.tableName, blog)">
             <div>{{ blog }}</div>
           </el-menu-item>
@@ -35,7 +57,7 @@ function getRoutePath(tableName: string, blogName: string): string {
     </div>
     <div class="main">
       <div class="content">
-        <router-view></router-view>
+        <div class="doc" v-html="contentData"></div>
       </div>
     </div>
   </div>
@@ -59,5 +81,15 @@ function getRoutePath(tableName: string, blogName: string): string {
 
 .content {
   padding: 64px 0 96px 96px;
+}
+
+.doc {
+    overflow-wrap: break-word;
+    width: 860px;
+    height: 100%;
+}
+
+.doc :deep(*) {
+    max-width: 100%;
 }
 </style>
