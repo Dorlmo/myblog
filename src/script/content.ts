@@ -75,7 +75,7 @@ const batchConvertToHTML = async (folderPath: string): Promise<void> => {
 const createContent = async (): Promise<void> => {
   try {
     await fsPromises.rm(CONTENT_FOLDER_PATH, { force: true, recursive: true });
-    await fsPromises.mkdir(CONTENT_FOLDER_PATH);
+    await fsPromises.mkdir(CONTENT_FOLDER_PATH, { recursive: true });
     await fsPromises.cp(BLOG_FOLDER_PATH, CONTENT_FOLDER_PATH, { recursive: true });
 
     const files = await fsPromises.readdir(CONTENT_FOLDER_PATH);
