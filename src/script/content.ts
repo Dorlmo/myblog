@@ -88,7 +88,7 @@ const createContent = async (): Promise<void> => {
     }
     console.log('Content created successfully')
   } catch (error) {
-    console.log("Content created failed")
+    console.log("Content created failed" + error)
   }
 }
 
@@ -129,7 +129,7 @@ const createTable = async () => {
     await fsPromises.writeFile(BLOG_TABLE_PATH, JSON.stringify(tables));
     console.log("Table created successfully")
   } catch (error) {
-    console.log("Table created failed")
+    console.log("Table created failed" + error)
   }
 }
 
