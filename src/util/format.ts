@@ -6,7 +6,7 @@ export const processMarkdownPaths = (markdownText: string) => {
     markdownText = markdownText.replace(/\\/g, "/");
     const linkRegex = /\[(.*?)\]\((.*)\)/g;
     markdownText = markdownText.replace(linkRegex, (_match, altText, linkPath) => {
-        const processedLinkPath = linkPath.replace(/.*(?=\/content)/, '');
+        const processedLinkPath = linkPath.replace(/.*(?=\/content\/)/,'');
         return `[${altText}](${processedLinkPath})`;
     });
 
