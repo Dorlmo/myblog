@@ -1,45 +1,3 @@
-<script setup lang="ts">
-import { ElMenu, ElMenuItem } from 'element-plus';
-import { onMounted, watch, ref, Ref } from 'vue';
-import { useRoute, useRouter } from 'vue-router';
-import { BlogTable } from '../script/content'
-import { getStringResource } from '../lib/api';
-import data from '../assets/data/blogTable.json';
-
-const tables: Ref<BlogTable[]> = ref();
-const contentData = ref();
-const route = useRoute();
-
-function getRoutePath(tableName: string, blogName: string): string {
-  return "/content/" + tableName + "/" + blogName;
-}
-
-async function fetchData():Promise<void> {
-  contentData.value = await getStringResource("/content/" + route.params.table + "/" + route.params.blog);
-}
-
-onMounted(() => {
-  tables.value = data;
-  const router = useRouter();
-  if (!(route.params.table || route.params.blog)) {
-    router.push({ name: 'content', params: { table: tables.value[0].tableName, blog: tables.value[0].list[0] } });
-  }
-  else{
-    fetchData();
-  }
-})
-
-watch(
-  () => [route.params.table, route.params.blog],
-  async () => {
-    fetchData();
-  }
-);
-
-
-
-</script>
-
 <template>
   <div class="common-layout">
     <div class="aside_nav">
@@ -48,7 +6,7 @@ watch(
           <div>
             {{ table.tableName }}
           </div>
-          <el-menu-item v-for="blog in table.list" :key="blog" :index="blog" :route="getRoutePath(table.tableName, blog)">
+          <el-menu-item v-for="blog in table.list" :key="blog" :index=blog :route="getRoutePath('document',table.tableName, blog)">
             <div>{{ blog }}</div>
           </el-menu-item>
           <div style="height: 20px;"></div>
@@ -62,6 +20,42 @@ watch(
     </div>
   </div>
 </template>
+
+<script setup lang="ts">
+import { ElMenu, ElMenuItem } from 'element-plus';
+import { onMounted, watch, ref } from 'vue';
+import { useRoute, useRouter } from 'vue-router';
+import { getStringResource } from '../lib/api';
+import { getRoutePath } from '../lib/getRoute'
+import data from '../assets/data/blogTable.json';
+
+const CONTENT_PATH = 'content';
+const tables = ref();
+const contentData = ref();
+const route = useRoute();
+
+async function fetchData(): Promise<void> {
+  contentData.value = await getStringResource(getRoutePath(CONTENT_PATH,route.params.table as string,route.params.blog as string));
+}
+
+onMounted(() => {
+  tables.value = data;
+  const router = useRouter();
+  if (route.params.table && route.params.blog) {
+    fetchData();
+  }
+  else {
+    router.replace({ name: 'document', params: { table: tables.value[0].tableName, blog: tables.value[0].list[0] } });
+  }
+})
+
+watch(
+  () => [route.params.table, route.params.blog],
+  async () => {
+    await fetchData();
+  },
+);
+</script>
 
 <style scoped>
 .aside_nav {
@@ -84,12 +78,12 @@ watch(
 }
 
 .doc {
-    overflow-wrap: break-word;
-    width: 860px;
-    height: 100%;
+  overflow-wrap: break-word;
+  width: 860px;
+  height: 100%;
 }
 
 .doc :deep(*) {
-    max-width: 100%;
+  max-width: 100%;
 }
 </style>

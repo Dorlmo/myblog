@@ -2,10 +2,10 @@
   <div class="overview">
     <el-menu :default-active="activeIndex" router mode="horizontal" :ellipsis="false">
       <div class="flex-grow"></div>
-      <el-menu-item index="home" route="/home">主页</el-menu-item>
-      <el-menu-item index="content" route="/content">文档</el-menu-item>
-      <el-menu-item index="about" route="/about">关于</el-menu-item>
-      <el-menu-item index="test" route="/test">测试</el-menu-item>
+      <el-menu-item index="home" :route="getRoutePath('home')">主页</el-menu-item>
+      <el-menu-item index="document" :route="getRoutePath('document')">文档</el-menu-item>
+      <el-menu-item index="about" :route="getRoutePath('about')">关于</el-menu-item>
+      <el-menu-item index="test" :route="getRoutePath('test')">测试</el-menu-item>
       <div style="width: 50px"></div>
     </el-menu>
     <div class="main">
@@ -18,7 +18,10 @@
 import { RouterView } from 'vue-router';
 import { ElMenu, ElMenuItem } from 'element-plus';
 import { ref } from 'vue';
+import { getRoutePath } from './lib/getRoute'
+
 const activeIndex = ref('home');
+
 </script>
 
 <style scoped>
