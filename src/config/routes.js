@@ -7,6 +7,6 @@ export default [
     { path: BASE_URL + 'about', name: 'about', component: () => import('../pages/About.vue') },
     { path: BASE_URL + 'test', name: 'test', component: () => import('../pages/Test.vue') },
     { path: BASE_URL + 'document', component: () => import('../pages/Content.vue') },
-    { path: BASE_URL + 'document/:table/:blog', name: 'document', component: () => import('../pages/Content.vue') },
+    { path: BASE_URL + 'document/:table/:blog', component: () => import('../pages/Content.vue') },
     { path: BASE_URL + ':pathMatch(.*)*', component: () => import('../pages/error/PageNotFound.vue') }
 ]
