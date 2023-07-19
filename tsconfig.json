@@ -4,6 +4,7 @@
     "module": "ES2020",
     "allowJs": true,
     "allowArbitraryExtensions": true,
+    "allowImportingTsExtensions":true,
     "skipLibCheck": true,
     "outDir": "out",
     "strict": true,

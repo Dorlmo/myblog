@@ -6,7 +6,7 @@
           <div>
             {{ table.tableName }}
           </div>
-          <el-menu-item v-for="blog in table.list" :key="blog.name" :index=blog.name
+          <el-menu-item v-for="blog in table.blogList" :key="blog.name" :index=blog.name
             :route="getRoutePath('document', blog.path)">
             <div>{{ blog.name }}</div>
           </el-menu-item>
@@ -16,7 +16,7 @@
     </div>
     <div class="main">
       <div class="content">
-        <div class="doc" v-html="contentData"></div>
+        <blog v-if="contentData" :info="contentData"></blog>
       </div>
     </div>
   </div>
@@ -24,37 +24,27 @@
 
 <script setup lang="ts">
 import { ElMenu, ElMenuItem } from 'element-plus';
+import blog from '../components/Blog.vue'
 import { onMounted, watch, ref, Ref } from 'vue';
-import { useRoute, useRouter } from 'vue-router';
-import { getStringResource } from '../lib/api';
+import { useRoute } from 'vue-router';
+import { getBlogTable, getBlogContent } from '../lib/api';
 import { getRoutePath } from '../lib/getRoute'
-import { BlogTable } from '../script/content'
-import data from '../assets/data/blogTable.json';
+import type { BlogTable, Blog } from '../interfaces/blogDataTypes.ts'
+
 
 const tables: Ref<BlogTable[]> = ref() as Ref<BlogTable[]>;
-const contentData = ref();
+const contentData: Ref<Blog> = ref() as Ref<Blog>;
 const route = useRoute();
 
-async function fetchData(): Promise<void> {
-  const { table, blog } = route.params;
-  contentData.value = await getStringResource(getRoutePath('content', table as string, blog as string));
-}
-
-onMounted(() => {
-  tables.value = data;
-  const router = useRouter();
-  if (route.params.table && route.params.blog) {
-    fetchData();
-  }
-  else {
-    router.replace({ path: 'document/' + tables.value[0].list[0].path });
-  }
+onMounted(async () => {
+  tables.value = getBlogTable();
+  contentData.value = await getBlogContent(route.params.table as string, route.params.blog as string) as Blog;
 })
 
 watch(
   () => [route.params.table, route.params.blog],
   async () => {
-    await fetchData();
+    contentData.value = await getBlogContent(route.params.table as string, route.params.blog as string) as Blog;
   },
 );
 </script>
@@ -77,16 +67,5 @@ watch(
 
 .content {
   padding: 64px 0 96px 96px;
-}
-
-.doc {
-  overflow-wrap: break-word;
-  width: 860px;
-  max-width: 100%;
-  height: 100%;
-}
-
-.doc :deep(*) {
-  max-width: 100%;
 }
 </style>
