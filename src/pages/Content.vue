@@ -17,6 +17,7 @@
     <div class="main">
       <div class="content">
         <blog v-if="contentData" :info="contentData"></blog>
+        <div v-else>加载中。。。。</div>
       </div>
     </div>
   </div>
@@ -66,6 +67,6 @@ watch(
 }
 
 .content {
-  padding: 64px 0 96px 96px;
+  padding: 40px 0 96px 96px;
 }
 </style>
