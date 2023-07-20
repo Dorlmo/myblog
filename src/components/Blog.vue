@@ -1,5 +1,5 @@
 <template>
-  <div class="common-view">
+  <div v-if="info" class="common-view">
     <h1 class="content-title">{{ info.frontMatter.title }}</h1>
     <div class="content-matter">
       <div v-if="info.frontMatter.author">作者：{{ info.frontMatter.author }}</div>
@@ -10,13 +10,18 @@
     </div>
     <div v-html="info.content"></div>
   </div>
+  <div v-else>
+    <div>
+      加载中。。。。。
+    </div>
+  </div>
 </template>
 
 <script setup lang="ts">
 import { Blog } from '../interfaces/blogDataTypes';
 
 defineProps<{
-  info: Blog
+  info?: Blog,
 }>()
 
 </script>

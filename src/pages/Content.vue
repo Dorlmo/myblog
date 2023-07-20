@@ -16,8 +16,7 @@
     </div>
     <div class="main">
       <div class="content">
-        <blog v-if="contentData" :info="contentData"></blog>
-        <div v-else>加载中。。。。</div>
+        <blog :info="contentData"></blog>
       </div>
     </div>
   </div>
@@ -33,12 +32,11 @@ import { getRoutePath } from '../lib/getRoute'
 import type { BlogTable, Blog } from '../interfaces/blogDataTypes.ts'
 
 
-const tables: Ref<BlogTable[]> = ref() as Ref<BlogTable[]>;
+const tables: BlogTable[] = getBlogTable();
 const contentData: Ref<Blog> = ref() as Ref<Blog>;
 const route = useRoute();
 
 onMounted(async () => {
-  tables.value = getBlogTable();
   contentData.value = await getBlogContent(route.params.table as string, route.params.blog as string) as Blog;
 })
 

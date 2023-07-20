@@ -7,6 +7,7 @@ import 'element-plus/dist/index.css'
 
 const router = createRouter({
     history: createWebHistory(),
+    base:import.meta.env.BASE_URL,
     routes, 
   })
 
