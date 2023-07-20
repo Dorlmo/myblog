@@ -35,9 +35,10 @@ const convertMarkdownToHTML = async (folderPath: string) => {
   for (const file of files) {
     if (file.endsWith('.md')) {
       const filePath = path.resolve(folderPath, file);
+      const fileName = path.basename(filePath, path.extname(filePath));
       const blog = await readMarkdownFile(filePath);
       await fs.writeFile(filePath, blog.content);
-      await fs.rename(filePath, path.resolve(folderPath, blog.frontMatter.title + '.html'));
+      await fs.rename(filePath, path.resolve(folderPath, fileName + '.html'));
     }
   }
 };

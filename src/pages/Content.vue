@@ -67,6 +67,6 @@ watch(
 }
 
 .content {
-  padding: 40px 0 96px 96px;
+  padding: 20px 0 96px 96px;
 }
 </style>
