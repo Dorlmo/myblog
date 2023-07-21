@@ -3,7 +3,7 @@ import blogTables from '../assets/data/blogTable.json';
 import { getRoutePath } from '../lib/getRoute';
 import { Blog, BlogTable,Post } from "../interfaces/blogDataTypes";
 
-const data = convertToMap(blogTables);
+const dataMap = convertToMap(blogTables);
 
 function convertToMap(blogTables: BlogTable[]): Map<string, Map<string, Post>> {
   const resultMap = new Map<string, Map<string, Post>>();
@@ -44,7 +44,7 @@ export const getBlogContent = async (table:string,blog:string):Promise<Blog>=>{
   const blogName = blog.replace(/\.html/,'');
   const newBlog = {
     content:await getStringResource(getRoutePath('content', table, blog)),
-    frontMatter:data.get(table)?.get(blogName)?.frontMatter || {},
+    frontMatter:dataMap.get(table)?.get(blogName)?.frontMatter || {},
   }
   return newBlog;
 }

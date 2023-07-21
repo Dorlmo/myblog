@@ -1,18 +1,17 @@
 <template>
   <div class="common-layout">
     <div class="aside_nav">
-      <el-menu router>
+      <CMenu :default-active="getRoutePath('document/' + getFirstDocPath())">
         <div v-for="table in tables">
           <div>
             {{ table.tableName }}
           </div>
-          <el-menu-item v-for="blog in table.blogList" :key="blog.name" :index=blog.name
-            :route="getRoutePath('document', blog.path)">
-            <div>{{ blog.name }}</div>
-          </el-menu-item>
+          <CMenuItem v-for="blog in table.blogList" :key="blog.name" :index="getRoutePath('document', blog.path)">
+            {{ blog.name }}
+          </CMenuItem>
           <div style="height: 20px;"></div>
         </div>
-      </el-menu>
+      </CMenu>
     </div>
     <div class="main">
       <div class="content">
@@ -23,11 +22,12 @@
 </template>
 
 <script setup lang="ts">
-import { ElMenu, ElMenuItem } from 'element-plus';
+import CMenu from '../components/Menu.vue'
+import CMenuItem from '../components/MenuItem.vue'
 import blog from '../components/Blog.vue'
 import { onMounted, watch, ref, Ref } from 'vue';
 import { useRoute } from 'vue-router';
-import { getBlogTable, getBlogContent } from '../lib/api';
+import { getBlogTable, getBlogContent,getFirstDocPath } from '../lib/api';
 import { getRoutePath } from '../lib/getRoute'
 import type { BlogTable, Blog } from '../interfaces/blogDataTypes.ts'
 
@@ -43,8 +43,8 @@ onMounted(async () => {
 watch(
   () => [route.params.table, route.params.blog],
   async () => {
-    contentData.value={content:'',frontMatter:{}}
-    contentData.value = await getBlogContent(route.params.table as string, route.params.blog as string) as Blog;
+    contentData.value = { content: '', frontMatter: {} }
+    contentData.value = await getBlogContent(route.params.table as string, route.params.blog as string)
   },
 );
 </script>

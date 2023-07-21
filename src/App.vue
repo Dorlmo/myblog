@@ -1,13 +1,13 @@
 <template>
   <div class="overview">
-    <el-menu :default-active="activeIndex" router mode="horizontal" :ellipsis="false">
+    <CMenu default-active="home" mode="horizontal">
       <div class="flex-grow"></div>
-      <el-menu-item index="home" :route="getRoutePath('home')">主页</el-menu-item>
-      <el-menu-item index="document" :route="getRoutePath('document/' + getFirstDocPath())">文档</el-menu-item>
-      <el-menu-item index="about" :route="getRoutePath('about')">关于</el-menu-item>
-      <el-menu-item index="test" :route="getRoutePath('test')">测试</el-menu-item>
-      <div style="width: 50px"></div>
-    </el-menu>
+      <CMenuItem index="home" :route="getRoutePath('home')">主页</CMenuItem>
+      <CMenuItem index="document" :route="getRoutePath('document/' + getFirstDocPath())">文档</CMenuItem>
+      <CMenuItem index="about" :route="getRoutePath('about')">关于</CMenuItem>
+      <CMenuItem index="test" :route="getRoutePath('test')">测试</CMenuItem>
+      <div style="width: 50px;"></div>
+    </CMenu>
     <div class="main">
       <RouterView></RouterView>
     </div>
@@ -16,21 +16,15 @@
 
 <script setup lang="ts">
 import { RouterView } from 'vue-router';
-import { ElMenu, ElMenuItem } from 'element-plus';
-import { ref } from 'vue';
+import CMenu from './components/Menu.vue'
+import CMenuItem from './components/MenuItem.vue'
 import { getRoutePath } from './lib/getRoute'
 import { getFirstDocPath } from './lib/api'
-
-const activeIndex = ref('home');
 
 </script>
 
 <style scoped>
-.el-header {
-  height: 60px;
-}
-
-.el-menu {
+.CMenu {
   position: fixed;
   top: 0;
   left: 0;

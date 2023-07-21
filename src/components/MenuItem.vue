@@ -1,73 +1,49 @@
 <template>
-    <a :class="menuItemClass" @click="handleClick">
+    <li :class="[active, menuItemClass]" @click="handleClick">
         <slot></slot>
-    </a>
+    </li>
 </template>
   
-<script lang="ts">
-import { onMounted, ref } from 'vue';
-export default {
-    name:"CMenuItem",
-    emits:{
-        click:null,
-    },
-    props: {
-        item: {
-            type: String,
-            default: '',
-        },
-        active: {
-            type: Boolean,
-            default: false,
-        },
-        index: {
-            type: String,
-            default: '',
-        },
-        route: {
-            type: String,
-            default: '',
-        }
-    },
-    methods: {
-        handleClick() {
-            if(this.$props.route){
-                this.$router.push(this.$props.route);
-            }
-        }
-    },
-    watch:{
-        active(newStatus){
-            if(newStatus){
-                this.menuItemClass += ' active';
-            }else{
-                this.menuItemClass.replace(' active','');
-            }
-        }
-    },
-    setup(props) {
-        const menuItemClass = ref('menu-item');
+<script setup lang="ts">
+import { ref, computed, inject } from 'vue';
+import { rootMenuType } from '../interfaces/menuTypes'
 
-        onMounted(() => {
+const menuItemClass = ref('CMenuItem');
+const rootMenu = inject<rootMenuType>('rootMenu') as rootMenuType;
 
-        });
-        return {
-            menuItemClass,
-        }
+const props = defineProps({
+    index: {
+        type: String,
+        default: '',
     },
-}
+    route: {
+        type: String,
+        default: '',
+    }
+});
+
+const active = computed(() => {
+    return props.index === rootMenu?.activeIndex.value ? 'active' : '';
+});
+
+const handleClick = () => {
+    rootMenu.handleMenuItemClick({
+        index: props.index,
+        route: props.route,
+    });
+}   
 </script>
   
 <style scoped>
-.menu-item {
+.CMenuItem {
+    position: relative;
     cursor: pointer;
     padding: 15px;
-    background-color: #f5f5f5;
-    border: 1px solid #ddd;
+    user-select: none;
 }
 
 .active {
-    background-color: #ccc;
+    color:rgb(18,188,121);
 }
 </style>
   
