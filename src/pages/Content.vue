@@ -43,6 +43,7 @@ onMounted(async () => {
 watch(
   () => [route.params.table, route.params.blog],
   async () => {
+    contentData.value={content:'',frontMatter:{}}
     contentData.value = await getBlogContent(route.params.table as string, route.params.blog as string) as Blog;
   },
 );

@@ -7,6 +7,7 @@
 <script lang="ts">
 import { onMounted, ref } from 'vue';
 export default {
+    name:"CMenu",
     props: {
         mode: {
             type: String,
@@ -21,9 +22,10 @@ export default {
     setup(props) {
         const menuClass = ref('menu');
         onMounted(() => {
-            if (props.mode !== 'horizonal') {
-                menuClass.value += ' flex-column';
+            if (props.mode === 'vertical') {
+                menuClass.value += ' menu-vertical';
             }
+            else menuClass.value += ' menu-horizonal';
         });
         return {
             menuClass,
@@ -37,7 +39,21 @@ export default {
     display: flex;
 }
 
-.flex-column {
+.menu-vertical {
     flex-direction: column;
+}
+
+.menu-horizonal{
+    flex-direction: row;
+}
+
+.menu-vertical > .menu-item{
+    background-color: aqua;
+    width: 100%;
+}
+
+.menu-horizonal > .menu-item{
+    background-color: blue;
+    height: 100%;
 }
 </style>

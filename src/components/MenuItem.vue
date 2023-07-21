@@ -7,6 +7,10 @@
 <script lang="ts">
 import { onMounted, ref } from 'vue';
 export default {
+    name:"CMenuItem",
+    emits:{
+        click:null,
+    },
     props: {
         item: {
             type: String,
@@ -27,10 +31,23 @@ export default {
     },
     methods: {
         handleClick() {
+            if(this.$props.route){
+                this.$router.push(this.$props.route);
+            }
+        }
+    },
+    watch:{
+        active(newStatus){
+            if(newStatus){
+                this.menuItemClass += ' active';
+            }else{
+                this.menuItemClass.replace(' active','');
+            }
         }
     },
     setup(props) {
         const menuItemClass = ref('menu-item');
+
         onMounted(() => {
 
         });

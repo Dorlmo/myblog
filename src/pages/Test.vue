@@ -1,8 +1,8 @@
 <template>
     <div>
         <cMenu>
-            <cMenuItem>a</cMenuItem>
-            <cMenuItem>b</cMenuItem>
+            <cMenuItem :active="true">a</cMenuItem>
+            <cMenuItem :route="'/home'">b</cMenuItem>
             <cMenuItem>c</cMenuItem>
             <cMenuItem>d</cMenuItem>
             <cMenuItem>e</cMenuItem>
