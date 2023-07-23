@@ -1,14 +1,15 @@
 <template>
-  <div v-if="info" class="common-view">
-    <h1 class="content-title">{{ info.frontMatter.title }}</h1>
-    <div class="content-matter">
+  <div v-if="info" class="Common-View">
+    <h1 class="Content-Title">{{ info.frontMatter.title }}</h1>
+    <div class="Content-Matter">
       <div v-if="info.frontMatter.author">作者：{{ info.frontMatter.author }}</div>
       <div v-else>作者：未知</div>
-      <div v-if="info.frontMatter.publishTime">作者：{{ info.frontMatter.publishTime }}</div>
-      <div v-else>作者：未知</div>
-      <div v-if="info.frontMatter.tags">标签：{{ info.frontMatter.tags?.join(',') }}</div>
+      <div v-if="info.frontMatter.publishTime">发布时间：{{ info.frontMatter.publishTime }}</div>
+      <div v-else>发布时间：未知</div>
     </div>
-    <div v-html="info.content"></div>
+    <div class="Content-Word" v-html="info.content"></div>
+    <div style="height: 25px;"></div>
+    <div v-if="info.frontMatter.tags" class="Content-Tail">标签：{{ info.frontMatter.tags?.join(',') }}</div>
   </div>
   <div v-else>
     <div>
@@ -27,18 +28,53 @@ defineProps<{
 </script>
 
 <style scoped>
-.common-view {
+.Common-View {
   overflow-wrap: break-word;
-  width: 860px;
+  width: 950px;
   max-width: 100%;
   height: 100%;
 }
 
-.common-view :deep(*) {
+.Common-View :deep(*) {
   max-width: 100%;
 }
 
-.content-title {
-  padding: 0, 0, 50px, 20px;
+.Content-Title {
+  margin: 20px 0 20px 0;
+}
+
+.Content-Matter {
+  font-size: 14px;
+  color: gray;
+}
+
+.Content-Tail{
+  font-size: 20px;
+}
+
+</style>
+
+<style>
+h1 {
+  font-family: Arial;
+  color: rgb(41, 24, 37);
+  font-size: 38px;
+  font-weight: 600;
+}
+
+h2 {
+  font-family: Arial;
+  color: rgb(41, 24, 37);
+  font-size: 28px;
+  font-weight: 600;
+}
+
+p {
+  font-size: 18px;
+  font-family: "宋体", Arial;
+}
+
+code {
+  font-size: 18px;
 }
 </style>

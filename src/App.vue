@@ -1,14 +1,14 @@
 <template>
-  <div class="overview">
+  <div class="Overview">
     <CMenu default-active="home" mode="horizontal">
-      <div class="flex-grow"></div>
+      <div style="flex-grow: 1;"></div>
       <CMenuItem index="home" :route="getRoutePath('home')">主页</CMenuItem>
       <CMenuItem index="document" :route="getRoutePath('document/' + getFirstDocPath())">文档</CMenuItem>
       <CMenuItem index="about" :route="getRoutePath('about')">关于</CMenuItem>
       <CMenuItem index="test" :route="getRoutePath('test')">测试</CMenuItem>
-      <div style="width: 50px;"></div>
+      <div style="width: 70px;"></div>
     </CMenu>
-    <div class="main">
+    <div class="Main">
       <RouterView></RouterView>
     </div>
   </div>
@@ -24,24 +24,20 @@ import { getFirstDocPath } from './lib/api'
 </script>
 
 <style scoped>
+.Overview {
+  width: 100%;
+}
+
+.Main {
+  padding-top: 50px;
+  height: 100%;
+}
+
 .CMenu {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 50px;
-}
-
-.overview {
-  width: 100%;
-}
-
-.main {
-  padding-top: 50px;
-  height: 100%;
-}
-
-.flex-grow {
-  flex-grow: 1;
 }
 </style>

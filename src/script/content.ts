@@ -4,7 +4,7 @@ import { fileURLToPath } from 'url';
 import { marked } from 'marked';
 import matter from 'gray-matter';
 import { convert } from 'html-to-text';
-import { sortByName } from '../util/sort.js';
+import { sortBlogList } from '../util/sort.js';
 import { processMarkdownPaths } from '../util/format.js';
 import { Blog, Post, BlogTable } from '../interfaces/blogDataTypes.ts';
 
@@ -73,7 +73,7 @@ const createTable = async (): Promise<void> => {
 
       if (!folderStat.isDirectory()) continue;
 
-      const list = [];
+      const list: Post[] = [];
       const files = await fs.readdir(folderPath);
       for (const file of files) {
         if (file.endsWith('.md')) {
@@ -88,6 +88,7 @@ const createTable = async (): Promise<void> => {
           list.push(newPost);
         }
       }
+      list.sort(sortBlogList);
 
       const newTable: BlogTable = {
         tableName: folder,
@@ -95,7 +96,7 @@ const createTable = async (): Promise<void> => {
       };
       tables.push(newTable);
     }
-    tables.sort((a, b) => sortByName(a.tableName, b.tableName));
+
     await fs.writeFile(BLOG_TABLE_PATH, JSON.stringify(tables));
     console.log('Table created successfully');
   } catch (error) {

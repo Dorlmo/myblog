@@ -1,20 +1,20 @@
 <template>
-  <div class="common-layout">
-    <div class="aside_nav">
+  <div>
+    <div class="Aside_Nav">
       <CMenu :default-active="getRoutePath('document/' + getFirstDocPath())">
-        <div v-for="table in tables">
-          <div>
-            {{ table.tableName }}
-          </div>
+        <div style="height: 15px;"></div>
+        <div class="TableList" v-for="table in tables">
+          <h2 class="Title"> {{ table.tableName }}</h2>
           <CMenuItem v-for="blog in table.blogList" :key="blog.name" :index="getRoutePath('document', blog.path)">
-            {{ blog.name }}
+            {{ blog.frontMatter.title }}
           </CMenuItem>
-          <div style="height: 20px;"></div>
+          <div style="height: 10px;"></div>
         </div>
+        <div style="height: 30px;"></div>
       </CMenu>
     </div>
-    <div class="main">
-      <div class="content">
+    <div class="Main">
+      <div class="Content">
         <blog :info="contentData"></blog>
       </div>
     </div>
@@ -27,7 +27,7 @@ import CMenuItem from '../components/MenuItem.vue'
 import blog from '../components/Blog.vue'
 import { onMounted, watch, ref, Ref } from 'vue';
 import { useRoute } from 'vue-router';
-import { getBlogTable, getBlogContent,getFirstDocPath } from '../lib/api';
+import { getBlogTable, getBlogContent, getFirstDocPath } from '../lib/api';
 import { getRoutePath } from '../lib/getRoute'
 import type { BlogTable, Blog } from '../interfaces/blogDataTypes.ts'
 
@@ -43,14 +43,13 @@ onMounted(async () => {
 watch(
   () => [route.params.table, route.params.blog],
   async () => {
-    contentData.value = { content: '', frontMatter: {} }
     contentData.value = await getBlogContent(route.params.table as string, route.params.blog as string)
   },
 );
 </script>
 
 <style scoped>
-.aside_nav {
+.Aside_Nav {
   position: fixed;
   top: 50px;
   left: 0;
@@ -58,14 +57,23 @@ watch(
   width: 200px;
   overflow-x: hidden;
   overflow-y: auto;
-  padding: 10px;
+  padding: 5px 0 0 50px;
+  user-select: none;
 }
 
-.main {
-  padding-left: 200px;
+.Title {
+  font-family: Arial;
+  font-size: 20px;
+  font-weight: 600;
+  color: rgb(39, 27, 54);
+  margin: 5px 0 7px 0;
 }
 
-.content {
-  padding: 20px 0 96px 96px;
+.Main {
+  padding-left: 210px;
+}
+
+.Content {
+  padding: 10px 0 96px 96px;
 }
 </style>

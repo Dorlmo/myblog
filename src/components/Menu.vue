@@ -5,7 +5,7 @@
 </template>
   
 <script setup lang="ts">
-import { onMounted, provide, ref, watch } from 'vue';
+import { onMounted, provide, ref, Ref } from 'vue';
 import { useRouter } from 'vue-router';
 
 const router = useRouter();
@@ -22,27 +22,22 @@ const props = defineProps({
     },
 });
 
-const menuClass = ref('CMenu');
-const activeIndex = ref(props.defaultActive);
+const menuClass: Ref<string> = ref('');
+const activeIndex: Ref<string> = ref('');
 
 const handleMenuItemClick = (menuItem: {
     index: string,
     route?: string,
-}) => {
+}): void => {
     activeIndex.value = menuItem.index;
-    console.log(activeIndex.value)
     const route = menuItem.route || menuItem.index;
     router.push(route);
 }
 
-watch(
-    () => props.defaultActive,
-    () => {
-        activeIndex.value = props.defaultActive;
-    }
-)
-
 onMounted(() => {
+    activeIndex.value = props.defaultActive;
+    menuClass.value = 'CMenu';
+
     if (props.mode === 'vertical') {
         menuClass.value += ' CMenu--vertical';
     } else {
@@ -62,29 +57,22 @@ provide('rootMenu', {
   
 <style scoped>
 .CMenu {
-    list-style: none;
     display: flex;
     flex-wrap: nowrap;
-    margin: 0;
-    padding-left: 0;
     box-sizing: border-box;
+    background-color: white;
 }
 
 .CMenu--horizontal {
+    align-items: center;
     flex-direction: row;
+    min-width: 100%;
     border-bottom: solid 1px rgb(205, 205, 205);
-}   
+}
 
 .CMenu--vertical {
     flex-direction: column;
+    min-height: 100%;
     border-right: solid 1px rgb(205, 205, 205);
-}
-
-.CMenu--vertical .CMenuItem {
-    width: 100%;
-}
-
-.CMenu--horizonal .CMenuItem {
-    height: 100%;
 }
 </style>
