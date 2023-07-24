@@ -82,7 +82,14 @@ const createTable = async (): Promise<void> => {
           const newPost: Post = {
             name: path.basename(file, path.extname(file)),
             path: path.relative(BLOG_FOLDER_PATH, filePath).replace(/\\/g, '/').replace(/\.md/, '.html'),
-            texts: convert(blog.content, { selectors: [{ selector: 'img', format: 'skip' }, { selector: 'a', options: { ignoreHref: true } }] }),
+            texts: convert(blog.content,
+              {
+                selectors: [
+                  { selector: 'img', format: 'skip' },
+                  {
+                    selector: 'a', options: { ignoreHref: true }
+                  }]
+              }),
             frontMatter: blog.frontMatter,
           };
           list.push(newPost);

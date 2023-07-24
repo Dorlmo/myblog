@@ -30,7 +30,7 @@ defineProps<{
 <style scoped>
 .Common-View {
   overflow-wrap: break-word;
-  width: 950px;
+  width: 925px;
   max-width: 100%;
   height: 100%;
 }
@@ -48,33 +48,37 @@ defineProps<{
   color: gray;
 }
 
-.Content-Tail{
-  font-size: 20px;
+.Content-Tail {
+  font-size: 14px;
 }
-
 </style>
 
 <style>
 h1 {
   font-family: Arial;
   color: rgb(41, 24, 37);
-  font-size: 38px;
+  font-size: 35px;
   font-weight: 600;
 }
 
 h2 {
   font-family: Arial;
   color: rgb(41, 24, 37);
-  font-size: 28px;
+  font-size: 25px;
   font-weight: 600;
 }
 
 p {
-  font-size: 18px;
-  font-family: "宋体", Arial;
+  font-size: 16px;
+  line-height: 1.7;
+  font-family: -apple-system, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", sans-serif;
+  font-weight: 400;
+  letter-spacing: .2px
 }
 
-code {
-  font-size: 18px;
+pre {
+  padding: 7px;
+  font-size: 15px;
+  background-color: rgb(249,249,249);
 }
 </style>

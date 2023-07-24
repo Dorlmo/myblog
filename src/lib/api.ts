@@ -3,6 +3,7 @@ import blogTables from '../assets/data/blogTable.json';
 import { getRoutePath } from '../lib/getRoute';
 import { Blog, BlogTable,Post } from "../interfaces/blogDataTypes";
 
+let cancelTokenSource = axios.CancelToken.source();
 const dataMap = convertToMap(blogTables);
 
 function convertToMap(blogTables: BlogTable[]): Map<string, Map<string, Post>> {
@@ -24,6 +25,9 @@ function convertToMap(blogTables: BlogTable[]): Map<string, Map<string, Post>> {
 
 export const getStringResource = async (filePath:string):Promise<string> => {
   try {
+    cancelTokenSource.cancel('New request, cancel previous');
+    cancelTokenSource = axios.CancelToken.source();
+
     const response = await axios.get(filePath);
     return response.data;
   } catch (error) {
@@ -44,7 +48,7 @@ export const getBlogContent = async (table:string,blog:string):Promise<Blog>=>{
   const blogName = blog.replace(/\.html/,'');
   const newBlog = {
     content:await getStringResource(getRoutePath('content', table, blog)),
-    frontMatter:dataMap.get(table)?.get(blogName)?.frontMatter || {},
+    frontMatter:{},
   }
   return newBlog;
 }
