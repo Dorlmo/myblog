@@ -11,28 +11,19 @@ tags:
 
 ​	contetn文件夹内部结构应该是这样的：
 
+```
 content
-
---assets
-
-----image1.webp
-
---table1
-
-----assets
-
-------image2.webp
-
-----blog1.md
-
-----blog2.md
-
---table2
-
-----blog3.md
-
-----image3.webp
-
+ -assets
+   -image1.webp
+ -table1
+   -assets
+     -image2.webp
+   -blog1.md
+   -blog2.md
+ -table2
+   -blog3.md
+   -image3.webp
+```
 
 
 具体规则是：

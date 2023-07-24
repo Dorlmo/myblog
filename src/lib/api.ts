@@ -48,7 +48,7 @@ export const getBlogContent = async (table:string,blog:string):Promise<Blog>=>{
   const blogName = blog.replace(/\.html/,'');
   const newBlog = {
     content:await getStringResource(getRoutePath('content', table, blog)),
-    frontMatter:{},
+    frontMatter:dataMap.get(table)?.get(blogName)?.frontMatter || {},
   }
   return newBlog;
 }
