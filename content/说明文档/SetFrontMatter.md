@@ -1,6 +1,5 @@
 ---
 title: 文章属性标注
-author: cefresjump
 publishTime: 2023/7/23
 index: 4
 tags: 
@@ -22,8 +21,7 @@ tags:
 例如这一篇文章的Yaml-Front-Matter:
 
 ```
-title: 标注测试
-author: cefresjump
+title: 文章属性标注
 publishTime: 2023/7/23
 index: 4
 tags: 
@@ -33,8 +31,6 @@ tags:
 解释：
 
 title：文章的标题，如果没有设置则使用文件的名字作为标题
-
-author：文章的作者，如果没有则显示“未知”
 
 publishTime: 发布时间（内部类型是字符串，你可以随便写个字符串作为时间），如果没有则显示“未知”
 

@@ -1,6 +1,5 @@
 ---
 title: 图片测试
-author: cefresjump
 publishTime: 2023/7/23
 index: 3
 tags: 

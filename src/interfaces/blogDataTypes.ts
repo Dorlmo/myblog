@@ -1,6 +1,5 @@
 export interface FrontMatter {
     title?: string;
-    author?: string;
     index?: number;
     publishTime?: string;
     tags?: string[];

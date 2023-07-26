@@ -1,6 +1,5 @@
 ---
 title: 文件存储
-author: cefresjump
 publishTime: 2023/7/23
 index: 2
 tags: 
@@ -34,5 +33,4 @@ content
 
 3.图片文件可以存放在content文件夹内部的任意位置，但是要确保图片的引用路径为绝对路径（D:\Workspace\myblog\content\main\assets\image1.webp）
 
-
-
+4.如果你使用typora，你可以在偏好设置-》图像-》插入图片时选择复制图片到./assets文件夹

@@ -2,8 +2,6 @@
   <div v-if="info" class="Common-View">
     <h1 class="Content-Title">{{ info.frontMatter.title }}</h1>
     <div class="Content-Matter">
-      <div v-if="info.frontMatter.author">作者：{{ info.frontMatter.author }}</div>
-      <div v-else>作者：未知</div>
       <div v-if="info.frontMatter.publishTime">发布时间：{{ info.frontMatter.publishTime }}</div>
       <div v-else>发布时间：未知</div>
     </div>
