@@ -46,6 +46,11 @@ defineProps<{
   color: gray;
 }
 
+.Content-Word{
+  font-size: 16px;
+  font-family: -apple-system, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", sans-serif;
+}
+
 .Content-Tail {
   font-size: 14px;
 }
@@ -64,14 +69,6 @@ h2 {
   color: rgb(41, 24, 37);
   font-size: 25px;
   font-weight: 600;
-}
-
-p {
-  font-size: 16px;
-  line-height: 1.7;
-  font-family: -apple-system, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", sans-serif;
-  font-weight: 400;
-  letter-spacing: .2px
 }
 
 pre {

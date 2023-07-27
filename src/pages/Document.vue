@@ -5,7 +5,7 @@
         <div style="height: 15px;"></div>
         <div class="TableList" v-for="table in tables">
           <h2 class="Title"> {{ table.tableName }}</h2>
-          <CMenuItem v-for="blog in table.blogList" :key="blog.name" :index="getRoutePath('document', blog.path)">
+          <CMenuItem v-for="blog in table.blogList" :key="blog.name" :index="getRoutePath('document', table.tableName,blog.name)">
             {{ blog.frontMatter.title }}
           </CMenuItem>
           <div style="height: 10px;"></div>

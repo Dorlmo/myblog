@@ -1,7 +1,7 @@
 import axios from "axios";
 import blogTables from '../assets/data/blogTable.json';
 import { getRoutePath } from '../lib/getRoute';
-import { Blog, BlogTable,Post } from "../interfaces/blogDataTypes";
+import { Blog, BlogTable, Post } from "../interfaces/blogDataTypes";
 
 let cancelTokenSource = axios.CancelToken.source();
 const dataMap = convertToMap(blogTables);
@@ -23,7 +23,7 @@ function convertToMap(blogTables: BlogTable[]): Map<string, Map<string, Post>> {
   return resultMap;
 }
 
-export const getStringResource = async (filePath:string):Promise<string> => {
+export const getStringResource = async (filePath: string): Promise<string> => {
   try {
     cancelTokenSource.cancel('New request, cancel previous');
     cancelTokenSource = axios.CancelToken.source();
@@ -36,19 +36,20 @@ export const getStringResource = async (filePath:string):Promise<string> => {
   }
 }
 
-export const getBlogTable = ():BlogTable[]=>{
+export const getBlogTable = (): BlogTable[] => {
   return blogTables;
 }
 
-export const getFirstDocPath = ():string=>{
-  return blogTables[0].blogList[0].path;
+export const getFirstDocPath = (): string => {
+  const table = blogTables[0];
+  return table.tableName + '/' + table.blogList[0].name;
 }
 
-export const getBlogContent = async (table:string,blog:string):Promise<Blog>=>{
-  const blogName = blog.replace(/\.html/,'');
+export const getBlogContent = async (table: string, blog: string): Promise<Blog> => {
+  const blogPath = table + '/' + blog + '.html';
   const newBlog = {
-    content:await getStringResource(getRoutePath('content', table, blog)),
-    frontMatter:dataMap.get(table)?.get(blogName)?.frontMatter || {},
+    content: await getStringResource(getRoutePath('content', blogPath)),
+    frontMatter: dataMap.get(table)?.get(blog)?.frontMatter || {},
   }
   return newBlog;
 }
