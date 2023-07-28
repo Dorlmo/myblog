@@ -11,19 +11,11 @@
 <body style="margin: 0px;">
   <div id="app"></div>
   <script>
-    (function () {
-      if (location.search) {
-        var params = {};
-        location.search
-          .replace(/^\?/, '')
-          .split('&')
-          .forEach(s => {
-            var v = s.split('=');
-            params[v[0]] = v[1];
-          });
-        if (params.page) {
-          history.replaceState(null, null, decodeURIComponent(params.page));
-        }
+    (() => {
+      const redirect = sessionStorage.redirect;
+      delete sessionStorage.redirect;
+      if (redirect && redirect !== location.href) {
+        history.replaceState(null, null, redirect);
       }
     })();
   </script>

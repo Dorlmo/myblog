@@ -1,10 +1,13 @@
+<!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <title>404</title>
-        <script>
-            location.href = location.origin + '/?page=' + encodeURIComponent(location.href.replace(location.origin, ''));
-        </script>
-    </head>
-    <body></body>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Page Not Found</title>
+    <script>
+      sessionStorage.redirect = location.href;
+    </script>
+    <meta http-equiv="refresh" content="0;URL='/cefres-blog/'" />
+  </head>
+  <body></body>
 </html>

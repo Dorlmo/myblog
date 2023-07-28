@@ -30,4 +30,4 @@ npm run preview
 
 ​	你可以查阅这个网站了解如何部署https://cn.vitejs.dev/guide/static-deploy.html
 
-​	如果你是部署到github page上，只要clone这个项目然后修改vite.config.js文件的baseURL就可以。
+​	如果你是部署到github page上你需要：1.修改vite.config.js的baseURL。2.修改404.html的重定向路径为baseURL
