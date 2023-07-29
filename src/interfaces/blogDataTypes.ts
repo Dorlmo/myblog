@@ -13,7 +13,6 @@ export interface Blog {
 export interface Post {
     name: string;
     path: string;
-    texts: string;
     frontMatter: FrontMatter;
 }
 
