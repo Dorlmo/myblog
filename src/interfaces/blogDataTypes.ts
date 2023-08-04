@@ -10,13 +10,12 @@ export interface Blog {
     content: string;
 }
 
-export interface Post {
+export interface BlogRecord {
     name: string;
+    index?: number;
     path: string;
-    frontMatter: FrontMatter;
 }
-
 export interface BlogTable {
-    tableName: string;
-    blogList: Post[];
+    name: string;
+    blogList: BlogRecord[]
 }

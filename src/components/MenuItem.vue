@@ -47,19 +47,22 @@ onMounted(() => {
     cursor: pointer;
     user-select: none;
     font-size: 17px;
+    color: rgb(78, 78, 78);
 }
 
 .CMenuItem:not(.active):hover {
-  color: rgb(100, 100, 100);
-} 
+    color: rgb(91,91,102);
+    text-decoration: underline;
+}
 
 .active {
-    color: rgb(18, 188, 121);
+    color: rgb(66,184,131);
+    font-weight: bold;
 }
 
 .CMenu--vertical .CMenuItem {
     width: 100%;
-    padding: 6px 0px 6px 0px;
+    padding: 5px 0px 5px 0px;
 }
 
 .CMenu--horizontal .CMenuItem {
