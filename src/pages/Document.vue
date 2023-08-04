@@ -1,12 +1,12 @@
 <template>
-  <div>
+  <div class="Document_View">
     <div class="Aside_Nav">
       <CMenu :default-active="getRoutePath('document/' + getFirstDocPath())">
         <div style="height: 15px;"></div>
-        <div class="TableList" v-for="table in tables">
-          <h2 class="Title"> {{ table.tableName }}</h2>
-          <CMenuItem v-for="blog in table.blogList" :key="blog.name" :index="getRoutePath('document', table.tableName,blog.name)">
-            {{ blog.frontMatter.title }}
+        <div v-for="table in tables">
+          <h2 class="Table_Title"> {{ table.name }}</h2>
+          <CMenuItem v-for="blog in table.blogList" :key="blog.name" :index="getRoutePath(`document/${blog.path}`)">
+            {{ blog.name }}
           </CMenuItem>
           <div style="height: 10px;"></div>
         </div>
@@ -49,6 +49,10 @@ watch(
 </script>
 
 <style scoped>
+.Document_View {
+  font-family: -apple-system, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", sans-serif;
+}
+
 .Aside_Nav {
   position: fixed;
   top: 50px;
@@ -57,12 +61,11 @@ watch(
   width: 200px;
   overflow-x: hidden;
   overflow-y: auto;
-  padding: 5px 0 0 50px;
+  padding: 10px 0 0 30px;
   user-select: none;
 }
 
-.Title {
-  font-family: Arial;
+.Table_Title {
   font-size: 20px;
   font-weight: 600;
   color: rgb(39, 27, 54);
@@ -70,10 +73,10 @@ watch(
 }
 
 .Main {
-  padding-left: 210px;
+  padding-left: 230px;
 }
 
 .Content {
-  padding: 10px 0 96px 96px;
+  padding: 10px 0 50px 40px;
 }
 </style>

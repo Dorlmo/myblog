@@ -4,7 +4,7 @@
  * @param {string} b - 要比较的第二个字符串
  * @returns {number} - 比较结果的数字
  */
-import { BlogTable, Post } from '../interfaces/blogDataTypes'
+import { BlogTable, BlogRecord } from '../interfaces/blogDataTypes'
 
 export const sortByName = (a: string, b: string): number => {
   const chineseRegex = /[\u4E00-\u9FFF]/;
@@ -16,13 +16,13 @@ export const sortByName = (a: string, b: string): number => {
   return a.localeCompare(b);
 };
 
-export const sortBlogList = (a: Post, b: Post): number => {
-  const hasIndexA = a.frontMatter && typeof a.frontMatter.index === 'number';
-  const hasIndexB = b.frontMatter && typeof b.frontMatter.index === 'number';
+export const sortBlogList = (a: BlogRecord, b: BlogRecord): number => {
+  const hasIndexA = typeof a.index === 'number';
+  const hasIndexB = typeof b.index === 'number';
 
   if (hasIndexA && hasIndexB) {
     // Both have index properties, sort based on index
-    return a.frontMatter.index! - b.frontMatter.index!;
+    return a.index! - b.index!;
   } else if (hasIndexA) {
     // Only A has index property, A comes first
     return -1;

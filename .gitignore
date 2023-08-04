@@ -13,15 +13,15 @@ dist-ssr
 *.local
 
 # Editor directories and files
+public/content
+public/record
+src/assets/data/blogIndex.js
 .vscode/*
 !.vscode/extensions.json
 .idea
-public/content/*
 .DS_Store
 *.suo
 *.ntvs*
 *.njsproj
 *.sln
 *.sw?
-auto-imports.d.ts
-components.d.ts

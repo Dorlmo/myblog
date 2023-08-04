@@ -18,6 +18,7 @@
 
 <script setup lang="ts">
 import { Blog } from '../interfaces/blogDataTypes';
+import 'highlight.js/styles/atom-one-dark.css'
 
 defineProps<{
   info?: Blog,
@@ -28,7 +29,7 @@ defineProps<{
 <style scoped>
 .Common-View {
   overflow-wrap: break-word;
-  width: 925px;
+  width: 875px;
   max-width: 100%;
   height: 100%;
 }
@@ -48,7 +49,6 @@ defineProps<{
 
 .Content-Word{
   font-size: 16px;
-  font-family: -apple-system, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", sans-serif;
 }
 
 .Content-Tail {
@@ -72,8 +72,6 @@ h2 {
 }
 
 pre {
-  padding: 7px;
-  font-size: 15px;
-  background-color: rgb(249,249,249);
+  overflow: auto;
 }
 </style>

@@ -1,33 +1,10 @@
 import axios from "axios";
-import blogTables from '../assets/data/blogTable.json';
+import { BlogIndex } from '../assets/data/blogIndex.js';
 import { getRoutePath } from '../lib/getRoute';
-import { Blog, BlogTable, Post } from "../interfaces/blogDataTypes";
-
-let cancelTokenSource = axios.CancelToken.source();
-const dataMap = convertToMap(blogTables);
-
-function convertToMap(blogTables: BlogTable[]): Map<string, Map<string, Post>> {
-  const resultMap = new Map<string, Map<string, Post>>();
-
-  for (const blogTable of blogTables) {
-    const { tableName, blogList } = blogTable;
-    const innerMap = new Map<string, Post>();
-
-    for (const post of blogList) {
-      innerMap.set(post.name, post);
-    }
-
-    resultMap.set(tableName, innerMap);
-  }
-
-  return resultMap;
-}
+import { Blog, BlogTable } from "../interfaces/blogDataTypes";
 
 export const getStringResource = async (filePath: string): Promise<string> => {
   try {
-    cancelTokenSource.cancel('New request, cancel previous');
-    cancelTokenSource = axios.CancelToken.source();
-
     const response = await axios.get(filePath);
     return response.data;
   } catch (error) {
@@ -36,20 +13,31 @@ export const getStringResource = async (filePath: string): Promise<string> => {
   }
 }
 
+export const getJSONResource = async (filePath: string): Promise<Object> => {
+  try {
+    const response = await axios.get(filePath);
+    
+    return response.data;
+  } catch (error) {
+    console.error('Failed to get json resourse:' + filePath, error);
+    throw new Error('ERROR: Get resource failed');
+  }
+}
+
 export const getBlogTable = (): BlogTable[] => {
-  return blogTables;
+  return BlogIndex;
 }
 
 export const getFirstDocPath = (): string => {
-  const table = blogTables[0];
-  return table.tableName + '/' + table.blogList[0].name;
+  return BlogIndex[0].blogList[0].path;
 }
 
 export const getBlogContent = async (table: string, blog: string): Promise<Blog> => {
-  const blogPath = table + '/' + blog + '.html';
+  const contentPath = `/content/${table}/${blog}.html`;
+  const recordPath = `/record/${table}/${blog}.json`;
   const newBlog = {
-    content: await getStringResource(getRoutePath('content', blogPath)),
-    frontMatter: dataMap.get(table)?.get(blog)?.frontMatter || {},
+    content: await getStringResource(getRoutePath(contentPath)),
+    frontMatter: await getJSONResource(getRoutePath(recordPath)),
   }
   return newBlog;
 }
