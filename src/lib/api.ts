@@ -16,7 +16,6 @@ export const getStringResource = async (filePath: string): Promise<string> => {
 export const getJSONResource = async (filePath: string): Promise<Object> => {
   try {
     const response = await axios.get(filePath);
-    
     return response.data;
   } catch (error) {
     console.error('Failed to get json resourse:' + filePath, error);
