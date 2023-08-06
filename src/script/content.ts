@@ -3,7 +3,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import MarkdownIt from 'markdown-it';
 import HighLight from 'markdown-it-highlightjs'
-import TocDoneRight from 'markdown-it-toc-done-right'
+import MarkdownItAnchor from 'markdown-it-anchor'
 import matter from 'gray-matter';
 import { sortBlogList } from '../util/sort.js';
 import { processMarkdownPaths } from '../util/format.js';
@@ -21,7 +21,7 @@ const readMarkdownFile = async (filePath: string): Promise<Blog> => {
     html: true,
     langPrefix: 'language-'
   }).use(HighLight)
-    .use(TocDoneRight);
+  .use(MarkdownItAnchor)
   const fileName = path.basename(filePath, path.extname(filePath));
   const page = await fs.readFile(filePath, 'utf-8');
   const { data, content } = matter(page);
@@ -39,8 +39,8 @@ const readMarkdownFile = async (filePath: string): Promise<Blog> => {
 const createContent = async (tables: BlogTable[]): Promise<void> => {
   try {
     await fs.rm(CONTENT_FOLDER_PATH, { force: true, recursive: true });
-    await fs.mkdir(CONTENT_FOLDER_PATH, { recursive: true });
     await fs.rm(RECORD_FOLDER_PATH, { force: true, recursive: true });
+    await fs.mkdir(CONTENT_FOLDER_PATH, { recursive: true });
     await fs.mkdir(RECORD_FOLDER_PATH, { recursive: true });
 
     for (const table of tables) {
