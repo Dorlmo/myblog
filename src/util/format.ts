@@ -5,7 +5,7 @@ import { baseURL } from '../../vite.config.js';
  * @param {string} markdownText - 要处理的markdown文本
  * @returns {string} - 处理后的markdown文本
  */
-export const processMarkdownPaths = (markdownText:string) => {
+export const processMarkdownPaths = (markdownText:string):string => {
   markdownText = markdownText.replace(/\\/g, "/");
 
   const linkRegex = /\[(.*?)\]\((.*)\)/g;

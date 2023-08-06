@@ -5,8 +5,7 @@
       <CMenuItem index="home" :route="getRoutePath('home')">主页</CMenuItem>
       <CMenuItem index="document" :route="getRoutePath('document/' + getFirstDocPath())">文档</CMenuItem>
       <CMenuItem index="about" :route="getRoutePath('about')">关于</CMenuItem>
-      <CMenuItem index="test" :route="getRoutePath('test')">测试</CMenuItem>
-      <div style="width: 70px;"></div>
+      <div style="width: 100px;"></div>
     </CMenu>
     <div class="Main">
       <RouterView></RouterView>
