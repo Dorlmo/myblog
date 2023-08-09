@@ -73,5 +73,7 @@ h2 {
 
 pre {
   overflow: auto;
+  border-radius: 4px;
+  padding: 15px 0 15px 17px;
 }
 </style>
