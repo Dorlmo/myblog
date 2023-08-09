@@ -1,11 +1,11 @@
 <template>
   <div class="Document_View">
     <div class="Aside_Nav">
-      <CMenu :default-active="getRoutePath('document/' + getFirstDocPath())">
+      <CMenu :default-active="`/document/${getFirstDocPath()}`">
         <div style="height: 15px;"></div>
         <div v-for="table in tables">
           <h2 class="Table_Title"> {{ table.name }}</h2>
-          <CMenuItem v-for="blog in table.blogList" :key="blog.name" :index="getRoutePath(`document/${blog.path}`)">
+          <CMenuItem v-for="blog in table.blogList" :key="blog.name" :index="`/document/${blog.path}`">
             {{ blog.name }}
           </CMenuItem>
           <div style="height: 10px;"></div>
@@ -28,7 +28,6 @@ import blog from '../components/Blog.vue'
 import { onMounted, watch, ref, Ref } from 'vue';
 import { useRoute } from 'vue-router';
 import { getBlogTable, getBlogContent, getFirstDocPath } from '../lib/api';
-import { getRoutePath } from '../lib/getRoute'
 import type { BlogTable, Blog } from '../interfaces/blogDataTypes.ts'
 
 

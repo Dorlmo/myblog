@@ -1,7 +1,7 @@
 import axios from "axios";
 import { BlogIndex } from '../assets/data/blogIndex.js';
-import { getRoutePath } from '../lib/getRoute';
 import { Blog, BlogTable } from "../interfaces/blogDataTypes";
+import { joinRoutes } from "../util/routePath";
 
 export const getStringResource = async (filePath: string): Promise<string> => {
   try {
@@ -32,11 +32,11 @@ export const getFirstDocPath = (): string => {
 }
 
 export const getBlogContent = async (table: string, blog: string): Promise<Blog> => {
-  const contentPath = `/content/${table}/${blog}.html`;
-  const recordPath = `/record/${table}/${blog}.json`;
+  const contentPath = joinRoutes('content',table,`${blog}.html`);
+  const recordPath = joinRoutes('record',table,`${blog}.json`);
   const newBlog = {
-    content: await getStringResource(getRoutePath(contentPath)),
-    frontMatter: await getJSONResource(getRoutePath(recordPath)),
+    content: await getStringResource(contentPath),
+    frontMatter: await getJSONResource(recordPath),
   }
   return newBlog;
 }

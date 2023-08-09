@@ -2,9 +2,9 @@
   <div class="Overview">
     <CMenu default-active="home" mode="horizontal">
       <div style="flex-grow: 1;"></div>
-      <CMenuItem index="home" :route="getRoutePath('home')">主页</CMenuItem>
-      <CMenuItem index="document" :route="getRoutePath('document/' + getFirstDocPath())">文档</CMenuItem>
-      <CMenuItem index="about" :route="getRoutePath('about')">关于</CMenuItem>
+      <CMenuItem index="/home">主页</CMenuItem>
+      <CMenuItem :index="`/document/${getFirstDocPath()}`">文档</CMenuItem>
+      <CMenuItem index="/about">关于</CMenuItem>
       <div style="width: 100px;"></div>
     </CMenu>
     <div class="Main">
@@ -17,7 +17,6 @@
 import { RouterView } from 'vue-router';
 import CMenu from './components/Menu.vue'
 import CMenuItem from './components/MenuItem.vue'
-import { getRoutePath } from './lib/getRoute'
 import { getFirstDocPath } from './lib/api'
 
 </script>
