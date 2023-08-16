@@ -31,6 +31,6 @@ content
 
 2.博客列表内部存放.md文件，禁止递归创建列表
 
-3.图片文件可以存放在content文件夹内部的任意位置，但是要确保图片的引用路径为绝对路径（D:\Workspace\myblog\content\main\assets\image1.webp）
+3.图片文件可以是绝对路径或者相对路径或者网址，但是不是网址的图片必须存放在content/博客列表/assets文件夹里
 
 4.如果你使用typora，你可以在偏好设置-》图像-》插入图片时选择复制图片到./assets文件夹

@@ -1,6 +1,6 @@
 <template>
   <div class="Overview">
-    <CMenu default-active="home" mode="horizontal">
+    <CMenu default-active="/home" mode="horizontal">
       <div style="flex-grow: 1;"></div>
       <CMenuItem index="/home">主页</CMenuItem>
       <CMenuItem :index="`/document/${getFirstDocPath()}`">文档</CMenuItem>
