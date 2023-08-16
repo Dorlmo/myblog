@@ -4,7 +4,6 @@ import { fileURLToPath } from 'url';
 import { CefresMD } from '../lib/markdown/index.ts';
 import matter from 'gray-matter';
 import { sortBlogList } from '../util/sort.js';
-import { processMarkdownPaths } from '../util/format.js';
 import { Blog, BlogRecord, BlogTable } from '../interfaces/blogDataTypes.ts';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -13,7 +12,6 @@ const BLOG_TABLE_PATH = path.resolve(__dirname, '../assets/data/blogIndex.js');
 const BLOG_FOLDER_PATH = path.resolve(__dirname, '../../content');
 const CONTENT_FOLDER_PATH = path.resolve(__dirname, '../../public/content');
 const RECORD_FOLDER_PATH = path.resolve(__dirname, '../../public/record');
-const IMAGE_PATH_URL = path.resolve(__dirname, '../../public/assets');
 
 const readMarkdownFile = async (filePath: string): Promise<Blog> => {
   const fileName = path.basename(filePath, path.extname(filePath));
@@ -21,7 +19,7 @@ const readMarkdownFile = async (filePath: string): Promise<Blog> => {
   const { data, content } = matter(page);
 
   data.title = data.title || fileName;
-  const htmlContent = CefresMD.render(processMarkdownPaths(content), { path: filePath });
+  const htmlContent = CefresMD.render(content, { path: filePath });
 
   const newBlog: Blog = {
     frontMatter: data,
@@ -34,10 +32,8 @@ const createContent = async (tables: BlogTable[]): Promise<void> => {
   try {
     await fs.rm(CONTENT_FOLDER_PATH, { force: true, recursive: true });
     await fs.rm(RECORD_FOLDER_PATH, { force: true, recursive: true });
-    await fs.rm(IMAGE_PATH_URL, { force: true, recursive: true });
     await fs.mkdir(CONTENT_FOLDER_PATH, { recursive: true });
     await fs.mkdir(RECORD_FOLDER_PATH, { recursive: true });
-    await fs.mkdir(IMAGE_PATH_URL, { recursive: true });
 
     for (const table of tables) {
       const contentTablePath = path.join(CONTENT_FOLDER_PATH, table.name);
