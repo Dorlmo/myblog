@@ -1,7 +1,3 @@
-
-![1](D:\Workspace\myblog\content\参考八股文\assets\1-1690382558817-45.webp)
-- 
-
 ## 六、this/call/apply/bind
 
 ### 1. 对this对象的理解

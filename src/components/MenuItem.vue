@@ -6,7 +6,18 @@
   
 <script setup lang="ts">
 import { ref, Ref, computed, inject, onMounted } from 'vue';
-import { rootMenuType } from '../interfaces/menuTypes'
+
+interface rootMenuType {
+    props: {
+        mode: string,
+        defaultActive: string,
+    }
+    activeIndex: Ref<string>,
+    handleMenuItemClick: (item: {
+        index: string,
+        route?: string,
+    }) => void
+}
 
 const menuItemClass: Ref<string> = ref('');
 
