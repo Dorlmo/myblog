@@ -1,6 +1,6 @@
 ---
 title: 性能优化withchatGPT
-index: 9
+index: 10
 publishTime: 2023/7/27
 ---
 
