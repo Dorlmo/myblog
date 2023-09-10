@@ -1,6 +1,156 @@
 ---
 title: 手写代码withchatGPT
-index: 20
+index: 9
 publishTime: 2023/8/2
 ---
 
+Q:deepcopy深拷贝
+
+A:
+
+解法1：递归复制
+
+```JavaScript
+function deepCopy(obj) {
+  if (obj === null || typeof obj !== 'object') {
+    return obj; // Return primitive values and null as is
+  }
+  
+  if (Array.isArray(obj)) {
+    const copy = [];
+    for (let i = 0; i < obj.length; i++) {
+      copy[i] = deepCopy(obj[i]);
+    }
+    return copy;
+  }
+  
+  const copy = {};
+  for (const key in obj) {
+    if (obj.hasOwnProperty(key)) {
+      copy[key] = deepCopy(obj[key]);
+    }
+  }
+  
+  return copy;
+}
+
+const originalObject = { foo: "bar", nested: { a: 1, b: 2 } };
+const copiedObject = deepCopy(originalObject);
+
+// Now 'copiedObject' is a deep copy of 'originalObject'
+
+```
+
+解法2：JSON方法
+
+```JavaScript
+function deepCopy(obj) {
+  // Use JSON.stringify to serialize the object to a JSON string
+  const jsonString = JSON.stringify(obj);
+  
+  // Use JSON.parse to parse the JSON string back into an object
+  const copy = JSON.parse(jsonString);
+  
+  return copy;
+}
+
+const originalObject = { foo: "bar", nested: { a: 1, b: 2 } };
+const copiedObject = deepCopy(originalObject);
+```
+
+
+
+Q:使用JavaScript实现发布-订阅模式
+
+A:
+
+```javascript
+// 创建一个发布者对象
+const publisher = {
+  subscribers: [],
+  
+  // 添加订阅者
+  subscribe(subscriber) {
+    this.subscribers.push(subscriber);
+  },
+  
+  // 发布消息给所有订阅者
+  publish(message) {
+    this.subscribers.forEach(subscriber => subscriber.notify(message));
+  }
+};
+
+// 创建订阅者构造函数
+function Subscriber(name) {
+  this.name = name;
+  
+  // 订阅者的通知方法
+  this.notify = function(message) {
+    console.log(`${this.name} 收到消息: ${message}`);
+  };
+}
+
+// 创建订阅者实例
+const subscriber1 = new Subscriber('订阅者1');
+const subscriber2 = new Subscriber('订阅者2');
+
+// 订阅发布者
+publisher.subscribe(subscriber1);
+publisher.subscribe(subscriber2);
+
+// 发布消息给所有订阅者
+publisher.publish('新消息1');
+publisher.publish('新消息2');
+```
+
+
+
+Q:防抖
+
+A：
+
+```javascript
+function debounce(func, delay) {
+  let timer;
+  return function() {
+    clearTimeout(timer);
+    timer = setTimeout(() => {
+      func.apply(this, arguments);
+    }, delay);
+  };
+}
+
+const searchInput = document.querySelector('#search-input');
+const debouncedSearch = debounce(search, 300);
+
+searchInput.addEventListener('input', debouncedSearch);
+```
+
+使用场合：搜索建议：当用户在搜索框中输入文字时，不希望每次输入都发送搜索请求，而是等待用户停止输入一段时间后再执行搜索。 （你可以看看百度搜索）
+
+
+
+Q:节流
+
+A：
+
+```javascript
+function throttle(func, delay) {
+  let throttled = false;
+  return function() {
+    if (!throttled) {
+      throttled = true;
+      func.apply(this, arguments);
+      setTimeout(() => {
+        throttled = false;
+      }, delay);
+    }
+  };
+}
+
+const handleScroll = throttle(scrollHandler, 200);
+
+window.addEventListener('scroll', handleScroll);  
+```
+
+使用场合：连续触发的数据上传 ：如果需要连续上传数据，但希望限制上传频率，可以使用节流来确保数据上传不会过于频繁。 

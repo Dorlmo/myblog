@@ -1,4 +1,4 @@
- ![CSS](D:\Workspace\myblog\content\参考八股文\assets\1.webp)
+ ![CSS](.\assets\1.webp)
 
 ## 一、CSS基础
 
