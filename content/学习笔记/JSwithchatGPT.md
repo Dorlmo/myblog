@@ -18,8 +18,7 @@ A:JavaScript中，`typeof null`的结果是`"object"`，这是因为历史原因
 
 例如：
 
-```
-javascript
+```javascript
 const obj = {};
 const num = 42;
 const str = "hello";
@@ -41,11 +40,8 @@ A:在JavaScript中，有多种方式可以进行数据类型检测。以下是�
 
 1. typeof 操作符： 使用typeof操作符可以快速检测一个值的基本数据类型，返回一个表示数据类型的字符串。常见的返回值有："undefined"、"boolean"、"number"、"string"、"object"、"function"等。
 
-   ```
-   javascript
-   ```
 
-```
+```javascript
 console.log(typeof 42);          // "number"
 console.log(typeof "hello");     // "string"
 console.log(typeof true);        // "boolean"
@@ -57,8 +53,7 @@ console.log(typeof function(){});// "function"
 
 instanceof 操作符： instanceof操作符用于检测对象的构造函数，它用来判断一个对象是否是某个类的实例。这种方法主要用于检测自定义对象的类型。
 
-```
-javascript
+```javascript
 class Person {}
 const john = new Person();
 
@@ -70,8 +65,7 @@ console.log(john instanceof Object); // true，因为所有对象都继承自Obj
 
 Object.prototype.toString.call()： 这种方式是一种通用的、准确的检测数据类型的方法，可以处理几乎所有数据类型。
 
-```
-javascript
+```javascript
 console.log(Object.prototype.toString.call(42));        // "[object Number]"
 console.log(Object.prototype.toString.call("hello"));   // "[object String]"
 console.log(Object.prototype.toString.call(true));      // "[object Boolean]"
@@ -84,16 +78,12 @@ console.log(Object.prototype.toString.call(function(){}));// "[object Function]"
 
 Array.isArray()： Array.isArray()方法是用来检测一个值是否为数组类型，返回一个布尔值。
 
-```
-javascript
+```javascript
+console.log(Array.isArray([1, 2, 3]));   // true
+console.log(Array.isArray({}));         // false
 ```
 
-1. ```
-   console.log(Array.isArray([1, 2, 3]));   // true
-   console.log(Array.isArray({}));         // false
-   ```
-
-   这个方法主要用于区分数组和其他对象。
+这个方法主要用于区分数组和其他对象。
 
 需要注意的是，不同的数据类型检测方式在特定情况下可能会有不同的行为，因此根据实际情况选择合适的方式进行数据类型检测。
 
@@ -119,8 +109,7 @@ A：在JavaScript中，原型（prototype）是一个对象，它是构造函数
 
 让我们来看一个简单的例子，理解原型的概念：
 
-```
-javascript
+```javascript
 // 构造函数
 function Person(name, age) {
   this.name = name;
@@ -198,9 +187,8 @@ A:`Array.forEach()`和 `for...of`在 JavaScript 中迭代数组中的元素有�
 
 例子： 
 
-```
-javascript 
-const numbers = [1, 2, 3, 4, 5];
+```javascript
+ const numbers = [1, 2, 3, 4, 5];
 
 numbers.forEach((element, index) => {
   console.log(`Element at index ${index}: ${element}`);
@@ -209,8 +197,7 @@ numbers.forEach((element, index) => {
 
 输出： 
 
-```
-数学 
+```shell
 Element at index 0: 1
 Element at index 1: 2
 Element at index 2: 3
@@ -222,9 +209,8 @@ Element at index 4: 5
 
 例子： 
 
-```
-javascript 
-const numbers = [1, 2, 3, 4, 5];
+```javascript
+ const numbers = [1, 2, 3, 4, 5];
 
 for (const element of numbers) {
   console.log(`Element: ${element}`);
@@ -233,8 +219,7 @@ for (const element of numbers) {
 
 输出： 
 
-```
-生成文件 
+```shell
 Element: 1
 Element: 2
 Element: 3
@@ -260,8 +245,7 @@ A:在 JavaScript 中，两者 `for...in`和 `for...of`是循环结构，允许�
 
 句法： 
 
-```
-javascript 
+```javascript 
 for (const key in object) {
   // Access the property using object[key]
 }
@@ -269,9 +253,8 @@ for (const key in object) {
 
 例子： 
 
-```
-javascript 
-const obj = { a: 1, b: 2, c: 3 };
+```javascript
+ const obj = { a: 1, b: 2, c: 3 };
 
 for (const key in obj) {
   console.log(key, obj[key]);
@@ -293,8 +276,7 @@ c 3
 
 句法： 
 
-```
-javascript 
+```javascript
 for (const element of iterable) {
   // Access the element directly as 'element'
 }
@@ -302,8 +284,7 @@ for (const element of iterable) {
 
 例子： 
 
-```
-javascript 
+```javascript
 const arr = [1, 2, 3];
 
 for (const element of arr) {
@@ -314,7 +295,6 @@ for (const element of arr) {
 输出： 
 
 ```
-
 1
 2
 3
@@ -688,3 +668,59 @@ person2.sayHello(); // Output: Hello, my name is Jane.
 
 
 
+Q:JavaScript作用域，作用域链
+
+A:JavaScript中的作用域（scope）是指在代码中定义变量或函数时，这些变量或函数可以被访问的区域。作用域有助于确定变量的可见性和生命周期，以及在代码中查找变量时的规则。JavaScript具有两种主要类型的作用域：全局作用域和局部作用域。
+
+1. 全局作用域（Global Scope）：
+   - 全局作用域包括整个JavaScript程序的范围，任何在全局范围内声明的变量或函数都可以在代码的任何位置访问。
+   - 在浏览器环境中，全局作用域通常与窗口对象（`window`）关联，因此全局变量实际上是窗口对象的属性。
+   - 在Node.js环境中，全局作用域通常与`global`对象关联。
+2. 局部作用域（Local Scope）：
+   - 局部作用域是在函数内部声明的作用域，这意味着变量或函数只能在函数内部访问。
+   - 每次调用函数时，都会创建一个新的局部作用域，变量在函数执行期间存在，函数执行完毕后，局部作用域就被销毁。
+
+作用域链（Scope Chain）是JavaScript中一个重要的概念，它决定了变量查找的顺序。当在某处引用一个变量时，JavaScript引擎会首先在当前作用域中查找，如果找不到，它会继续在父级作用域中查找，直到找到该变量或达到全局作用域。这种查找的方式形成了作用域链。
+
+以下是作用域链的一些关键点：
+
+- 当在函数内部引用变量时，JavaScript引擎首先查找局部作用域，然后查找父级作用域，直到找到变量或达到全局作用域。
+- 如果在当前作用域和其父级作用域中都找不到变量，JavaScript引擎将抛出一个`ReferenceError`错误。
+- 函数可以访问自己的局部变量以及其父级作用域和全局作用域中的变量。这种能力称为闭包（closures）。
+
+以下是一个简单的示例，说明作用域和作用域链的概念：
+
+```javascript
+var globalVariable = 'I am global'; // 全局变量
+
+function outerFunction() {
+  var outerVariable = 'I am outer'; // 外部函数的局部变量
+
+  function innerFunction() {
+    var innerVariable = 'I am inner'; // 内部函数的局部变量
+    console.log(globalVariable); // 可以访问全局变量
+    console.log(outerVariable); // 可以访问外部函数的局部变量
+    console.log(innerVariable); // 可以访问自己的局部变量
+  }
+
+  innerFunction();
+}
+
+outerFunction();
+```
+
+在这个示例中，`innerFunction` 可以访问全局变量、外部函数的局部变量和自己的局部变量，这是因为它们都在作用域链中可见。
+
+
+
+Q:JavaScript执行上下文
+
+A:JavaScript执行上下文是在代码执行时创建的环境，用于管理变量、函数和其他数据。执行上下文可以分为三种类型：全局执行上下文、函数执行上下文和eval执行上下文。
+
+1. 全局执行上下文（Global Execution Context）：全局执行上下文是在程序开始执行时创建的，它包含了全局范围内的变量和函数声明。在浏览器环境中，全局执行上下文通常表示整个页面的作用域。全局执行上下文只有一个，并在程序执行期间一直存在。
+2. 函数执行上下文（Function Execution Context）：每当函数被调用时，都会创建一个函数执行上下文。函数执行上下文包含了函数内部的变量、参数和函数内的代码。每个函数调用都会创建一个新的函数执行上下文，函数执行完毕后，相应的执行上下文会被销毁。
+3. eval执行上下文：eval函数用于动态执行JavaScript代码。当使用eval函数时，会创建一个特殊的执行上下文，称为eval执行上下文。在现代JavaScript编程中，尽量避免使用eval，因为它可能会引发一些安全和性能问题。
+
+每个执行上下文都有自己的作用域链、变量对象（Variable Object）、this值等。作用域链用于查找变量的值，变量对象包含了执行上下文中定义的变量和函数，而this值通常是指向当前执行上下文所属的对象（对于全局执行上下文，this通常指向window对象）。
+
+执行上下文的创建和销毁是由JavaScript引擎自动管理的，它们遵循一定的规则和顺序。了解执行上下文的概念有助于理解JavaScript代码的运行机制，特别是作用域和变量的访问规则。

@@ -90,8 +90,7 @@ A：懒加载（Lazy Loading）是一种优化网页性能的技术，它用于�
 
 HTML：
 
-```
-html
+```html
 <!DOCTYPE html>
 <html>
 <head>
@@ -108,8 +107,7 @@ html
 
 JavaScript：
 
-```
-html
+```html
 <script>
   document.addEventListener("DOMContentLoaded", function() {
     const lazyImages = document.querySelectorAll('img[data-src]');
@@ -205,8 +203,7 @@ DocumentFragment 并不属于文档树的一部分，因此它没有父节点，
 
 示例代码（使用 JavaScript）：
 
-```
-javascript
+```javascript
 // 创建一个空的 DocumentFragment
 const fragment = document.createDocumentFragment();
 
@@ -255,8 +252,7 @@ A：节流（Throttling）和防抖（Debouncing）是前端开发中常用的�
 
 1. 节流函数（Throttle）： 节流函数会在一定时间间隔内执行一次函数，如果在这段时间内多次调用函数，只会执行其中的一次。
 
-```
-javascript
+```javascript
 function throttle(func, delay) {
   let lastExecTime = 0;
   return function (...args) {
@@ -281,8 +277,7 @@ window.addEventListener("scroll", throttledScroll);
 
 1. 防抖函数（Debounce）： 防抖函数会在函数被调用后等待一段时间，在这段时间内如果再次调用函数，则重新等待一段时间。如果在等待时间内没有再次调用函数，则执行函数。
 
-```
-javascript
+```javascript
 function debounce(func, delay) {
   let timer;
   return function (...args) {

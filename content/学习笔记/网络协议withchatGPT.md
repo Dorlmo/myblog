@@ -634,8 +634,7 @@ A：HTTP（Hypertext Transfer Protocol）的响应报文是服务器向客户端
 
 下面是一个完整的示例：
 
-```
-php
+```php+HTML
 HTTP/1.1 200 OK
 Content-Type: text/html
 Content-Length: 123

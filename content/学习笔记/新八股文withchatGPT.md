@@ -1,5 +1,5 @@
 ---
-title: 新八股文withchatGPT
+title: 其他withchatGPT
 index: 11
 publishTime: 2023/7/27
 ---
