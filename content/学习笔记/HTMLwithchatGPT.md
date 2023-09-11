@@ -20,7 +20,7 @@ A:`src`和`href`是HTML标签中的两个常用属性，它们用于指定外部
 
    例如：
 
-```
+```html
 <img src="image.jpg" alt="Image">
 <script src="script.js"></script>
 <iframe src="https://www.example.com"></iframe>
@@ -36,7 +36,7 @@ A:`src`和`href`是HTML标签中的两个常用属性，它们用于指定外部
 
 例如：
 
-1. ```
+1. ```html
    <a href="https://www.example.com">Visit Example Website</a>
    <link href="style.css" rel="stylesheet">
    <base href="https://www.example.com/">
@@ -85,8 +85,7 @@ script,  script defer， 和 script async是将 JavaScript 代码包含在 HTML 
 
 例子： 
 
-```
-html 
+```html
 <script src="path/to/script.js"></script>
 ```
 
@@ -94,8 +93,7 @@ html
 
 例子： 
 
-```
-html 
+```html
 <script defer src="path/to/script.js"></script>
 ```
 
@@ -103,8 +101,7 @@ html
 
 例子： 
 
-```
-html 
+```html
 <script async src="path/to/script.js"></script>
 ```
 
@@ -129,8 +126,7 @@ A:HTML中的`canvas`和`SVG`是两种用于绘制图形的标签，它们可以�
 
 示例代码：
 
-```
-html
+```html
 <canvas id="myCanvas" width="400" height="200"></canvas>
 javascript
 const canvas = document.getElementById('myCanvas');
@@ -150,8 +146,7 @@ ctx.fillRect(50, 50, 100, 100);
 
 示例代码：
 
-```
-html
+```html
 <svg width="400" height="200">
   <rect x="50" y="50" width="100" height="100" fill="blue" />
 </svg>
@@ -174,8 +169,7 @@ A:在HTML中，`<head>`标签是位于文档的头部部分，用于包含文档
 
 1. `<title>`：定义网页的标题，显示在浏览器的标题栏或选项卡上。这也是搜索引擎结果中显示的标题。
 
-```
-html
+```html
 <head>
   <title>My Website</title>
 </head>
@@ -183,8 +177,7 @@ html
 
 1. `<meta>`：提供文档的元数据，例如字符集、作者、关键词等。其中最常用的是指定字符集编码，以确保正确显示特殊字符。
 
-```
-html
+```html
 <head>
   <meta charset="UTF-8">
   <meta name="author" content="John Doe">
@@ -194,8 +187,7 @@ html
 
 1. `<link>`：用于引入外部资源，通常用于链接CSS样式表。
 
-```
-html
+```html
 <head>
   <link rel="stylesheet" href="styles.css">
 </head>
@@ -203,8 +195,7 @@ html
 
 1. `<script>`：用于引入JavaScript代码，可以放在`<head>`标签内或文档末尾的`<body>`标签内。
 
-```
-html
+```html
 <head>
   <script src="script.js"></script>
 </head>
@@ -212,8 +203,7 @@ html
 
 1. `<base>`：指定页面上所有相对URL的基本URL地址。
 
-```
-html
+```html
 <head>
   <base href="https://www.example.com/">
 </head>
@@ -221,8 +211,7 @@ html
 
 1. `<style>`：用于在HTML文档中嵌入CSS样式。
 
-```
-html
+```html
 <head>
   <style>
     body {
@@ -269,15 +258,13 @@ A:在HTML中，`href="#hello"`是一个超链接（hyperlink）的语法，用�
 
 例如，如果你有一个页面中的目标元素如下：
 
-```
-html
+```html
 <h2 id="hello">Hello World!</h2>
 ```
 
 然后，你可以通过以下方式创建一个链接，让用户点击链接后滚动到这个元素：
 
-```
-html
+```html
 <a href="#hello">跳转到Hello World</a>
 ```
 
