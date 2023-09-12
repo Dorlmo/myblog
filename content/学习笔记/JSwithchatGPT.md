@@ -724,3 +724,122 @@ A:JavaScript执行上下文是在代码执行时创建的环境，用于管理�
 每个执行上下文都有自己的作用域链、变量对象（Variable Object）、this值等。作用域链用于查找变量的值，变量对象包含了执行上下文中定义的变量和函数，而this值通常是指向当前执行上下文所属的对象（对于全局执行上下文，this通常指向window对象）。
 
 执行上下文的创建和销毁是由JavaScript引擎自动管理的，它们遵循一定的规则和顺序。了解执行上下文的概念有助于理解JavaScript代码的运行机制，特别是作用域和变量的访问规则。
+
+
+
+Q:如何理解JavaScript Promise？ 
+
+A:理解 JavaScript Promise 对于以更结构化和可读的方式处理异步操作和管理回调至关重要。  Promise 是表示异步操作最终完成或失败的一种方式。  与直接使用回调相比，它们提供了一种更干净、更有组织的方式来处理异步代码。 
+
+以下是如何逐步理解 JavaScript Promise： 
+
+1. **承诺基础知识** ： 
+   - Promise 是一个对象，代表一个可能尚不可用但在未来某个时刻可用的值。 
+   - Promise 可以具有三种状态：待处理、已完成（已解决）或已拒绝。 
+   - 它们通常用于处理异步操作，例如发出 HTTP 请求或读取文件。 
+2. **创建一个承诺** ： 
+   - 您可以使用以下命令创建新的承诺 `Promise`构造函数，它接受单个函数（执行器）作为参数。  该函数有两个参数， `resolve`和 `reject`，它们本身就是函数。 
+   - 在执行器函数内，您执行异步任务并调用 `resolve`当它成功或 `reject`当它失败时。 
+
+```javascript
+const myPromise = new Promise((resolve, reject) => {
+  // Asynchronous operation
+  if (/* operation successful */) {
+    resolve("Success!");
+  } else {
+    reject("Error!");
+  }
+});
+```
+
+**承诺链** ： 
+
+- Promise 允许您将多个异步操作链接在一起，使代码更具可读性。 
+- 您可以使用 `.then()`方法来指定当承诺得到解决时应该发生什么 `.catch()`处理错误的方法。 
+
+```javascript
+myPromise
+  .then((result) => {
+    console.log(result); // "Success!"
+  })
+  .catch((error) => {
+    console.error(error); // "Error!"
+  });
+```
+
+**Promise.all()**  ： 
+
+- `Promise.all()`是一种方法，它接受一组 Promise 并返回一个新的 Promise，该新 Promise 在所有输入 Promise 都已解决时解析，或者如果其中任何一个 Promise 拒绝，则拒绝。 
+
+```javascript
+const promise1 = someAsyncOperation1();
+const promise2 = someAsyncOperation2();
+
+Promise.all([promise1, promise2])
+  .then(([result1, result2]) => {
+    console.log(result1, result2);
+  })
+  .catch((error) => {
+    console.error(error);
+  });
+```
+
+**Async/Await**:
+
+- Introduced in ES2017, async/await provides a more readable and synchronous-looking way to work with promises.
+- 您将函数标记为 `async`, and then you can use `await` inside it to pause execution until a promise is resolved.
+
+```javascript 
+async function fetchData() {
+  try {
+    const response = await fetch('https://api.example.com/data');
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    throw new Error('Failed to fetch data');
+  }
+}
+```
+
+**错误处理** ： 
+
+- 始终使用处理错误 `.catch()`或者 `try/catch`阻止未处理的承诺拒绝，这可能会导致应用程序崩溃。 
+
+```javascript 
+myPromise
+  .then((result) => {
+    console.log(result);
+  })
+  .catch((error) => {
+    console.error(error);
+  });
+```
+
+理解 Promise 是使用异步 JavaScript 的一项基本技能，它构成了更高级的概念（如 async/await 和处理复杂的异步流）的基础。 
+
+
+
+Q:JavaScript箭头函数和普通函数的区别
+
+A:JavaScript中的箭头函数和普通函数（也称为函数表达式或函数声明）之间有几个重要的区别：
+
+1. 语法：
+   - 箭头函数的语法更加简洁，通常由参数列表、箭头符号（=>）和函数体组成。例如：`(param1, param2) => expression`。
+   - 普通函数可以使用不同的语法，包括函数声明和函数表达式。函数声明的语法如下：`function functionName(param1, param2) { /* 函数体 */ }`，而函数表达式的语法如下：`const functionName = function(param1, param2) { /* 函数体 */ }`。
+2. this 的绑定：
+   - 箭头函数没有自己的 this 绑定。它们会捕获外部作用域的 this 值。这意味着箭头函数内部的 this 与外部的 this 是一样的，通常是定义箭头函数时的上下文。
+   - 普通函数的 this 绑定是动态的，取决于函数被调用的方式和上下文。它可以根据调用方式而变化。
+3. arguments 对象：
+   - 箭头函数没有自己的 arguments 对象。如果需要访问函数参数，可以使用具名参数或通过 rest 参数语法 (`...`) 来获取参数。
+   - 普通函数有一个名为 arguments 的对象，它包含了所有传递给函数的参数。
+4. 构造函数：
+   - 箭头函数不能用作构造函数。尝试使用 `new` 关键字创建箭头函数会导致错误。
+   - 普通函数可以用作构造函数，通过 `new` 关键字创建实例对象。
+5. 返回值：
+   - 箭头函数如果只有一条表达式，它会自动返回该表达式的值，无需使用 `return` 关键字。如果有多条语句，则需要使用 `{}` 包裹，并显式使用 `return`。
+   - 普通函数需要显式使用 `return` 关键字来指定返回值。
+6. 适用场景：
+   - 箭头函数通常适用于简单的函数，特别是回调函数或函数式编程中的操作。
+   - 普通函数更灵活，适用于需要更复杂逻辑、需要动态绑定 this、或需要使用 arguments 对象的情况。
+
+总的来说，箭头函数和普通函数各有各的用途，你可以根据具体的需求来选择使用哪种类型的函数。
