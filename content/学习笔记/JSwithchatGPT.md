@@ -843,3 +843,264 @@ A:JavaScript中的箭头函数和普通函数（也称为函数表达式或函�
    - 普通函数更灵活，适用于需要更复杂逻辑、需要动态绑定 this、或需要使用 arguments 对象的情况。
 
 总的来说，箭头函数和普通函数各有各的用途，你可以根据具体的需求来选择使用哪种类型的函数。
+
+
+
+Q:并发和并行的区别 
+
+A:并发（Concurrency）和并行（Parallelism）是两个计算机科学中重要但不同的概念，它们描述了多个任务或 
+
+1. 并发（Concurrency）： 
+   - 并发指的是多个任务在同一时间段内交替执行，每个任务都有可能在不同的时间点开始和结束，而不一定是同时开始或同时结束。 
+   - 并发通常用于处理多个任务之间的交互和调度，以提高系统的响应性和资源利用率。 
+   - 并发任务之间可能共享资源，因此需要进行同步和互斥操作，以避免竞争条件和数据不一致性问题。 
+   - 典型的并发场景包括多线程编程、协程（Coroutine）和事件驱动编程。 
+2. 并行（Parallelism）： 
+   - 并行指的是多个任务在同一时刻同时执行，每个任务都在不同的处理单元（例如，多核CPU或多台计算机）上独立运行，互不干扰。
+   - 并行旨在通过同时处理多个任务来提高计算性能，从而缩短任务的执行时间。 
+   - 并行任务之间通常不需要显式的同步，因为它们在不同的处理单元上运行，不会相互干扰。 
+   - 典型的并行场景包括多线程并行计算、分布式计算和GPU并行计算。 
+
+总结： 
+
+- 并发关注的是任务之间的逻辑控制和调度，强调任务的交替执行和协作。 
+- 并行关注的是任务的物理同时执行，强调任务的并发执行，通常在多个处理单元上完成。
+- 并发通常用于提高响应性和资源共享，适用于I/O密集型任务和需要事件处理的场景。 
+- 并行通常用于提高计算性能，适用于CPU密集型任务和需要大规模数据处理的场景。 
+- 在一些情况下，可以同时使用并发和并行来充分利用多核CPU和多台计算机的性能。 
+
+
+
+Q:Service Worker
+
+A:Service Worker 是渐进式 Web 应用程序 (PWA) 的关键组件，通过启用离线功能、提高性能和提供后台处理功能，在增强 Web 应用程序方面发挥着至关重要的作用。  以下是 Service Worker 的更详细解释： 
+
+1. **定义** ：Service Worker 是在 Web 应用程序后台运行的 JavaScript 脚本，与网页分开。   它充当 Web 应用程序和网络之间的代理，拦截网络请求并允许开发人员控制它们的处理方式。 
+2. **离线功能** ：Service Worker 的主要优势之一是当用户首次访问网站时能够缓存资源（HTML、CSS、JavaScript、图像等）。   即使用户离线，也可以提供这些缓存的资源，从而提供无缝的用户体验。 
+3. **改进的性能** ：服务工作人员还可以缓存资源以提高 Web 应用程序的性能，即使用户在线时也是如此。   可以从本地缓存更快地提供缓存资源，从而减少服务器请求和延迟。 
+4. **后台同步** ：即使 Web 应用程序未打开，服务工作人员也可以执行后台任务，例如向服务器发送数据。   这对于同步用户数据或在后台发送分析数据等任务非常有用。 
+5. **推送通知** ：Service Worker 在 Web 应用程序中启用推送通知，允许开发人员即使在 Web 应用程序未打开时也可以向用户发送通知，类似于本机移动应用程序发送推送通知的方式。 
+6. **安全性** ：Service Worker 在单独的线程上操作，无法直接访问 DOM（文档对象模型），这使得它们免受跨站点脚本 (XSS) 等多种常见 Web 漏洞的影响。 
+7. **范围** ：Service Worker 具有开发人员定义的特定范围。   他们可以控制该范围内 Web 应用程序的行为，例如拦截请求并根据缓存的资源对其进行响应。 
+8. **生命周期** ：Service Worker 有特定的生命周期，包括安装、激活和终止。   它们可以更新或替换为新版本，以确保 Web 应用程序始终使用最新的 Service Worker 脚本。 
+9. **浏览器支持** ：大多数现代 Web 浏览器（包括 Chrome、Firefox、Safari 和 Edge）都支持 Service Worker，这使它们成为构建 PWA 的广泛采用的技术。 
+
+为了有效地使用 Service Worker，开发人员通常编写代码来在 Web 应用程序中注册和管理它们。  可以自定义 Service Worker 脚本来定义如何处理网络请求、缓存哪些资源以及发生某些事件时（例如首次安装 Service Worker 时或收到推送通知时）应采取哪些操作。 
+
+服务工作者通过创建 Web 应用程序改变了 Web 开发，这些应用程序即使在具有挑战性的网络条件或用户离线时也能提供可靠且快速的体验。 
+
+
+
+Q:介绍JavaScript生成器函数
+
+A:JavaScript生成器函数（Generator Functions）是一种特殊的JavaScript函数，它们允许你在需要时生成多个值，而不是一次性生成所有值并将它们存储在内存中。这使得它们非常适用于处理大量数据、异步编程和迭代操作。生成器函数使用关键字`function*`来定义，并包含`yield`语句用于产生值。
+
+以下是一个简单的生成器函数示例：
+
+```javascript
+function* numberGenerator() {
+  yield 1;
+  yield 2;
+  yield 3;
+}
+
+const generator = numberGenerator();
+
+console.log(generator.next()); // 输出: { value: 1, done: false }
+console.log(generator.next()); // 输出: { value: 2, done: false }
+console.log(generator.next()); // 输出: { value: 3, done: false }
+console.log(generator.next()); // 输出: { value: undefined, done: true }
+```
+
+在这个示例中，`numberGenerator`是一个生成器函数，通过`yield`关键字产生了一系列值。当你调用生成器函数时，它会返回一个迭代器（iterator）对象，你可以使用`.next()`方法来获取生成的值。每次调用`.next()`时，函数会执行到下一个`yield`语句，返回一个包含`value`和`done`属性的对象。`value`包含生成的值，`done`表示生成器是否已经完成。
+
+生成器函数的优点包括：
+
+1. 惰性计算：生成器只在需要时才计算和生成值，这对于处理大量数据或需要长时间运行的任务非常有用，因为它们不会一次性消耗大量内存。
+2. 异步编程：生成器函数结合`async/await`可用于更容易地处理异步操作，例如异步请求或文件读取。
+3. 更清晰的迭代：生成器使得迭代操作更简洁，不需要手动管理索引或迭代器状态。
+4. 管道操作：你可以将多个生成器函数链接在一起，构建数据处理管道。
+
+需要注意的是，生成器函数的执行可以暂停和恢复，这使得它们在控制流和异步操作方面非常强大。生成器还支持`return`语句，可以用于结束生成器的执行。
+
+生成器函数的用法在JavaScript中变得越来越常见，尤其在处理异步任务和数据流时非常有用。
+
+
+
+Q:什么是变量提升
+
+A：变量提升（Hoisting）是指在JavaScript中，变量和函数声明会在代码执行阶段被提升到其所在作用域的顶部，无论它们在代码中的实际位置是什么。这意味着在你声明一个变量或函数之前，你可以在代码中引用它们，而不会导致错误。
+
+在JavaScript中，变量提升的行为有一些规则： 
+
+变量声明会被提升：当你用  `var`、 `let` 或  `const` 声明一个变量时，这个声明会在代码执行前被提升到当前作用域的顶部。但是，只有声明会被提升，赋值不会被提升。这意味着变量的值不会在声明前被访问，但变量名可以。 
+
+示例： 
+
+```javascript 
+console.log(x); // undefined
+var x = 5;
+```
+
+上面的代码中， `x` 被提升到了顶部，但它的值在声明之前是  `undefined`。 
+
+函数声明会被提升：函数声明会被整个函数提升到作用域的顶部。这意味着你可以在函数声明前调 
+
+示例： 
+
+```javascript 
+foo(); // "Hello, World!"
+function foo() {
+  console.log("Hello, World!");
+}
+```
+
+上面的代码中，函数  `foo` 被提升到顶部，因此我们可以在声明前调用它。
+
+变量提升只在当前作用域内有效：变量和函数声明只会在其所在的作用域内进行提升，不会影响外部作用域的变量。 
+
+示例： 
+
+```javascript 
+function outer() {
+  console.log(x); // undefined
+  var x = 10;
+}
+outer();
+console.log(x); // ReferenceError: x is not defined
+```
+
+在上面的示例中，函数  `outer` 内部的变量  `x` 被提升到函数作用域的顶部，因此在声明之前可以访问，但它不会影响到外部 `x`。
+
+总之，变量提升是JavaScript中的一种特性，但它可能会导致一些意外行为，因此建议在使用变量或函数之前，始终在合适的位置进行声明和赋值，以提高代码的可读性和可维护性。此外，ES6引入的 `let`和 `const`关键字对变量提升行为有一些改变，使其更符合直觉。
+
+
+
+//参考MDN
+
+Q：介绍EventTarget.addEventListener()
+
+A：`EventTarget.addEventListener()` 是 JavaScript 中用于向事件目标（通常是 DOM 元素）添加事件监听器的方法。它允许开发者为特定的事件类型注册一个回调函数，以便在事件发生时执行该回调函数。 
+
+以下是 `EventTarget.addEventListener()` 的基本语法：
+
+```
+addEventListener(type, listener);
+addEventListener(type, listener, options);
+addEventListener(type, listener, useCapture);
+```
+
+type
+
+表示监听[事件类型](https://developer.mozilla.org/zh-CN/docs/Web/Events)的大小写敏感的字符串。
+
+listener
+
+当所监听的事件类型触发时，会接收到一个事件通知（实现了 [`Event`](https://developer.mozilla.org/zh-CN/docs/Web/API/Event) 接口的对象）对象。`listener` 必须是一个实现了 [`EventListener`](https://developer.mozilla.org/zh-CN/docs/Web/API/EventTarget/addEventListener) 接口的对象，或者是一个[函数](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Functions)。有关回调本身的详细信息，请参阅[事件监听回调](https://developer.mozilla.org/zh-CN/docs/Web/API/EventTarget/addEventListener#事件监听回调)
+
+options 可选
+
+一个指定有关 `listener` 属性的可选参数对象。可用的选项如下：
+
+- `capture` 可选
+
+  ​        一个布尔值，表示 `listener` 会在该类型的事件捕获阶段传播到该 `EventTarget` 时触发。      
+
+- `once` 可选
+
+  ​        一个布尔值，表示 `listener` 在添加之后最多只调用一次。如果为 `true`，`listener` 会在其被调用之后自动移除。      
+
+- `passive` 可选
+
+  ​        一个布尔值，设置为 `true` 时，表示 `listener` 永远不会调用 `preventDefault()`。如果 listener 仍然调用了这个函数，客户端将会忽略它并抛出一个控制台警告。查看[使用 passive 改善滚屏性能](https://developer.mozilla.org/zh-CN/docs/Web/API/EventTarget/addEventListener#使用_passive_改善滚屏性能)以了解更多。      
+
+- `signal` 可选
+
+  ​        [`AbortSignal`](https://developer.mozilla.org/zh-CN/docs/Web/API/AbortSignal)，该 `AbortSignal` 的 [`abort()`](https://developer.mozilla.org/zh-CN/docs/Web/API/AbortController/abort) 方法被调用时，监听器会被移除。      
+
+`useCapture` 可选
+
+一个布尔值，表示在 DOM 树中注册了 `listener` 的元素，是否要先于它下面的 `EventTarget` 调用该 `listener`。当 useCapture（设为 true）时，沿着 DOM 树向上冒泡的事件不会触发  listener。当一个元素嵌套了另一个元素，并且两个元素都对同一事件注册了一个处理函数时，所发生的事件冒泡和事件捕获是两种不同的事件传播方式。事件传播模式决定了元素以哪个顺序接收事件。进一步的解释可以查看 [DOM Level 3 事件](https://www.w3.org/TR/DOM-Level-3-Events/#event-flow)及 [JavaScript 事件顺序](https://www.quirksmode.org/js/events_order.html#link4)文档。如果没有指定，`useCapture` 默认为 `false`。
+
+
+
+Q：JavaScript 的内存分配
+
+A:https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Memory_management
+
+### 引用计数垃圾收集
+
+此算法把“对象是否不再需要”简化定义为“对象有没有其他对象引用到它”。如果没有引用指向该对象（零引用），对象将被垃圾回收机制回收。
+
+```javascript
+var o = {
+  a: {
+    b: 2,
+  },
+};
+// 两个对象被创建，一个作为另一个的属性被引用，另一个被分配给变量 o
+// 很显然，没有一个可以被垃圾收集
+
+var o2 = o; // o2 变量是第二个对“这个对象”的引用
+
+o = 1; // 现在，“这个对象”只有一个 o2 变量的引用了，“这个对象”的原始引用 o 已经没有
+
+var oa = o2.a; // 引用“这个对象”的 a 属性
+// 现在，“这个对象”有两个引用了，一个是 o2，一个是 oa
+
+o2 = "yo"; // 虽然最初的对象现在已经是零引用了，可以被垃圾回收了
+// 但是它的属性 a 的对象还在被 oa 引用，所以还不能回收
+
+oa = null; // a 属性的那个对象现在也是零引用了
+// 它可以被垃圾回收了
+```
+
+#### 限制：循环引用
+
+该算法有个限制：无法处理循环引用的事例。在下面的例子中，两个对象被创建，并互相引用，形成了一个循环。它们被调用之后会离开函数作用域，所以它们已经没有用了，可以被回收了。然而，引用计数算法考虑到它们互相都有至少一次引用，所以它们不会被回收。
+
+```javascript
+function f() {
+  var o = {};
+  var o2 = {};
+  o.a = o2; // o 引用 o2
+  o2.a = o; // o2 引用 o
+
+  return "azerty";
+}
+
+f();
+```
+
+#### 实际例子
+
+IE 6, 7 使用引用计数方式对 DOM 对象进行垃圾回收。该方式常常造成对象被循环引用时内存发生泄漏：
+
+```javascript
+var div;
+window.onload = function () {
+  div = document.getElementById("myDivElement");
+  div.circularReference = div;
+  div.lotsOfData = new Array(10000).join("*");
+};
+```
+
+在上面的例子里，`myDivElement` 这个 DOM 元素里的 `circularReference 属性`引用了 `myDivElement`，造成了循环引用。如果该属性没有显示移除或者设为 null，引用计数式垃圾收集器将总是且至少有一个引用，并将一直保持在内存里的 DOM 元素，即使其从 DOM 树中删去了。如果这个 DOM 元素拥有大量的数据 (如上的 `lotsOfData` 属性)，而这个数据占用的内存将永远不会被释放。
+
+### 标记 - 清除算法
+
+这个算法把“对象是否不再需要”简化定义为“对象是否可以获得”。
+
+这个算法假定设置一个叫做根（root）的对象（在 Javascript 里，根是全局对象）。垃圾回收器将定期从根开始，找所有从根开始引用的对象，然后找这些对象引用的对象……从根开始，垃圾回收器将找到所有可以获得的对象和收集所有不能获得的对象。
+
+这个算法比前一个要好，因为“有零引用的对象”总是不可获得的，但是相反却不一定，参考“循环引用”。
+
+从 2012 年起，所有现代浏览器都使用了标记 - 清除垃圾回收算法。所有对 JavaScript 垃圾回收算法的改进都是基于标记 - 清除算法的改进，并没有改进标记 - 清除算法本身和它对“对象是否不再需要”的简化定义。
+
+#### 循环引用不再是问题了
+
+在上面的示例中，函数调用返回之后，两个对象从全局对象出发无法获取。因此，他们将会被垃圾回收器回收。第二个示例同样，一旦 div 和其事件处理无法从根获取到，他们将会被垃圾回收器回收。
+
+#### 限制：那些无法从根对象查询到的对象都将被清除
+
+尽管这是一个限制，但实践中我们很少会碰到类似的情况，所以开发者不太会去关心垃圾回收机制。
