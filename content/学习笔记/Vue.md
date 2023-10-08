@@ -1,5 +1,5 @@
 ---
-title: VuewithchatGPT
+title: Vue
 index: 6
 publishTime: 2023/8/2
 ---

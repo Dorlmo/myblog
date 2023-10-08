@@ -1,5 +1,5 @@
 ---
-title: HTMLwithchatGPT
+title: HTML
 index: 3
 publishTime: 2023/7/27
 ---

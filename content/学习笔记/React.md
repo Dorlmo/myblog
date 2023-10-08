@@ -1,5 +1,5 @@
 ---
-title: ReactwithchatGPT
+title: React
 index: 14
 publishTime: 2023/9/9
 ---

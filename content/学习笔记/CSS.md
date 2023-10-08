@@ -1,5 +1,5 @@
 ---
-title: CSSwithchatGPT
+title: CSS
 index: 4
 publishTime: 2023/7/28
 ---
