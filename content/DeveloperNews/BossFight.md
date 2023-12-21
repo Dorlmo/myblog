@@ -13,7 +13,7 @@ tags:
 
 
 
-![画板 2](./assets/%E7%94%BB%E6%9D%BF%202.png)
+![画板 2](D:\Workspace\myblog\content\DeveloperNews\assets\%E7%94%BB%E6%9D%BF%202.png)
 
 在初稿中，一局典例的游戏是这样的
 
