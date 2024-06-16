@@ -1,11 +1,9 @@
 ---
-title: 图片测试
+title: 游戏截图
 publishTime: 2024/6/15
 index: 1
 tags: 
 ---
-
-
 
 
 
@@ -33,15 +31,15 @@ Steam：
 
 原神：
 
-<img src="D:/Workspace/myblog/content/Intro/assets/20240615014.webp" alt="20240615014" style="zoom: 33%;" />
+<img src="D:/Workspace/myblog/content/Intro/assets/20240615014.webp" alt="20240615014"  />
 
-<img src="D:/Workspace/myblog/content/Intro/assets/20240615015.webp" alt="20240615015" style="zoom:33%;" />
+<img src="D:/Workspace/myblog/content/Intro/assets/20240615015.webp" alt="20240615015"  />
 
 崩坏三：
 
-<img src="D:/Workspace/myblog/content/Intro/assets/20240615016.webp" alt="20240615016" style="zoom:33%;" />
+<img src="D:/Workspace/myblog/content/Intro/assets/20240615016.webp" alt="20240615016"  />
 
-<img src="D:/Workspace/myblog/content/Intro/assets/20240615017.webp" alt="20240615017" style="zoom:33%;" />
+<img src="D:/Workspace/myblog/content/Intro/assets/20240615017.webp" alt="20240615017"  />
 
 明日方舟：
 
