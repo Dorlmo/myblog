@@ -31,15 +31,15 @@ Steam：
 
 原神：
 
-<img src="D:/Workspace/myblog/content/Intro/assets/20240615014.webp" alt="20240615014"  />
+![20240615014](D:/Workspace/myblog/content/Intro/assets/20240615014.webp)
 
-<img src="D:/Workspace/myblog/content/Intro/assets/20240615015.webp" alt="20240615015"  />
+![20240615015](D:/Workspace/myblog/content/Intro/assets/20240615015.webp)
 
 崩坏三：
 
-<img src="D:/Workspace/myblog/content/Intro/assets/20240615016.webp" alt="20240615016"  />
+![20240615016](D:/Workspace/myblog/content/Intro/assets/20240615016.webp)
 
-<img src="D:/Workspace/myblog/content/Intro/assets/20240615017.webp" alt="20240615017"  />
+![20240615017](D:/Workspace/myblog/content/Intro/assets/20240615017.webp)
 
 明日方舟：
 
@@ -55,8 +55,10 @@ Steam：
 
 鸣潮：
 
-<img src="D:/Workspace/myblog/content/Intro/assets/20240615021.webp" alt="20240615021" style="zoom:33%;" />
+![20240615021](D:/Workspace/myblog/content/Intro/assets/20240615021.webp)
 
 炽焰天穹：
 
-<img src="D:/Workspace/myblog/content/Intro/assets/20240615001.webp" alt="20240615001" style="zoom:33%;" />
+![20240615001](D:/Workspace/myblog/content/Intro/assets/20240615001.webp)
+
+1
