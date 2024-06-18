@@ -1,7 +1,7 @@
 ---
 title: 游戏截图
 publishTime: 2024/6/15
-index: 1
+index: 2
 tags: 
 ---
 
